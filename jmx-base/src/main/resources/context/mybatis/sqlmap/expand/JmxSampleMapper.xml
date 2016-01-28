@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+<mapper namespace="com.focustech.jmx.DAO.JmxSampleDAO">
+
+	<resultMap id="jmxSampleResult" type="com.focustech.jmx.po.JmxSample">
+        <result column="obj_name" property="objName" jdbcType="VARCHAR"/>
+		<result column="attr_name" property="attrName" jdbcType="VARCHAR"/>
+        <result column="key_name" property="keyName" jdbcType="VARCHAR"/>
+		<result column="alias" property="alias" jdbcType="VARCHAR"/>
+    </resultMap>
+
+	<sql id="jmx_sample_list">
+		obj_name, attr_name, key_name, alias
+    </sql>
+
+	<select id="getSampleListByObjName" resultMap="jmxSampleResult">
+		select
+		<include refid="jmx_sample_list"/>
+		from jmx_sample
+		where obj_name=#{obj}
+	</select>
+
+	<select id="getObjNameListByAlias" resultType="java.lang.String">
+		select
+		distinct(obj_name)
+		from jmx_sample
+		where alias like '${alias}%'
+	</select>
+	
+	<select id="getSampleListByIds" resultMap="jmxSampleResult">
+		select
+		<include refid="jmx_sample_list"/>
+		from jmx_sample
+		where rec_id in
+		<foreach collection="ids" index="index" item="item" open="(" separator="," close=")">
+           #{item}
+        </foreach>
+        GROUP BY
+        obj_name
+	</select>
+
+</mapper>

@@ -1,0 +1,229 @@
+
+	<div class="page-content">
+		<ul class="breadcrumb">
+		<li>Monitor<span class="divider"> / Dashboard</span></li>
+        </ul>
+		<div class="container-fluid">
+    		<div class="dashboard">
+
+            </div>
+		 <div class="panel-group">
+			<div class="panel panel-info">
+    			<div class="panel-heading toggle"  data-target="#topevent-widget-placeholder" style="padding:2px 15px">
+    				<div class="panel-title">
+					  <div class="caption">
+						top 10事件
+                      </div>
+                       <div class="actions">
+						<a href="javascript:;" class="btn refresh" type="topevent"><i class="fa-refresh">
+                       Refresh</i></a>
+					    <a  href="javascript:;" class="btn">
+							<i class="fa-angle-double-down"></i></a>
+					   </div>
+                    </div>
+                </div>
+    			<div class="panel-body" id="topevent-widget-placeholder">
+
+    			</div>
+            </div>
+			<div class="panel panel-info">
+    			<div class="panel-heading toggle"  data-target="#connfail-panel" style="padding:2px 15px">
+    				<div class="panel-title">
+					  <div class="caption">
+						Jmx监听失败统计(24小时之内服务)
+                      </div>
+                       <div class="actions">
+						<a href="javascript:;" class="btn refresh" type="connfail"><i class="fa-refresh">
+                       Refresh</i></a>
+					    <a  href="javascript:;"  class="btn toggle">
+							<i class="fa-angle-double-up"></i></a>
+					   </div>
+                    </div>
+                </div>
+    			<div class="panel-body ignore" id="connfail-panel">
+                     #parse("common/serverselect.vm")
+                     <div class="panel">
+						<div class="panel-body" style="margin-top:5px" id="connfail-widget-placeholder">
+
+                        </div>
+					 </div>
+    			</div>
+
+            </div>
+			<div class="panel panel-info">
+    			<div class="panel-heading toggle"  data-target="#overviewdb-widget-placeholder" style="padding:2px 15px">
+					<div class="panel-title">
+					  <div class="caption">
+						数据库统计
+                      </div>
+                       <div class="actions"><a href="javascript:;" class="btn refresh" type="dbactive"><i class="fa-refresh">
+                       Refresh</i></a>
+					   <a href="javascript:;"  class="btn toggle">
+							<i class="fa-angle-double-up"></i></a>
+					   </div>
+                    </div>
+                </div>
+    			<div class="panel-body ignore" id="overviewdb-widget-placeholder" >
+
+    			</div>
+            </div>
+			<div class="panel panel-info">
+    			<div class="panel-heading toggle"  data-target="#overviewmemory-widget-placeholder" style="padding:2px 15px">
+					<div class="panel-title">
+					  <div class="caption">
+						内存统计
+                      </div>
+                       <div class="actions"><a href="javascript:;" class="btn refresh" type="mactive"><i class="fa-refresh">
+                       Refresh</i></a>
+					   <a href="javascript:;"   class="btn toggle">
+							<i class="fa-angle-double-up"></i></a>
+					   </div>
+                    </div>
+                </div>
+    			<div class="panel-body ignore" id="overviewmemory-widget-placeholder">
+
+    			</div>
+            </div>
+			<div class="panel panel-info">
+    			<div class="panel-heading toggle" data-target="#overviewthread-widget-placeholder" style="padding:2px 15px">
+					<div class="panel-title">
+					  <div class="caption">
+						线程统计
+                      </div>
+                       <div class="actions"><a href="javascript:;" class="btn refresh" type="tactive"><i class="fa-refresh">
+                       Refresh</i></a>
+					    <a  href="javascript:;"   class="btn toggle">
+							<i class="fa-angle-double-up"></i></a>
+					   </div>
+                    </div>
+                </div>
+    			<div class="panel-body ignore" id="overviewthread-widget-placeholder">
+
+    			</div>
+            </div>
+         </div>
+
+		</div>
+    </div>
+    <script type="text/x-handlebars-template" id="topevent-widget-template">
+     <table class="table table-striped">
+    				<tbody>
+                     {{#each this}}
+                        <tr>
+    						<td>
+                                <div style="width:20px" class="fa-chevron-right" >{{addOne @index}}</div>
+    						</td>
+                            <td>{{appname}}</td>
+							<td>{{servername}}</td>
+                            <td><a href="/jmx/dumpfile/download.html?filePath={{dumppath}}">{{reason}}</a></td>
+    						<td>{{dumptime}}</td>
+    					</tr>
+						{{/each}}
+
+                    </tbody>
+                </table>
+	</script>
+    <script type="text/x-handlebars-template" id="connectfail-widget-template">
+						<table class="table table-bordered table-striped table-hover">
+            				<thead>
+                				<tr>
+                					<th>应用名称</th>
+                					<th>服务名称</th>
+                					<th>监控抓取数据失败总数</th>
+                                    <th>最近一次时间</th>
+                				</tr>
+                    		</thead>
+							<tbody>
+							    {{#each serverfail}}
+                                <tr>
+                					<td>{{appname}}</td>
+									<td>{{hostip}}</td>
+									<td><a href="/jmx/detail/failconn.html?app={{appid}}&server={{hostid}}">{{failcount}}
+                                    </a></td>
+                                    <td>{{lasttime}}</td>
+                                </tr>
+								{{/each}}
+                            </tbody>
+                         </table>
+						 <div id="connfail-pagination" style="float:right"><!--分页-->
+
+                        </div>
+
+	</script>
+	<script type="text/x-handlebars-template" id="overview-db-widget-template">
+       <div class="well chart-box">
+        	<div id="overview-database-widget-chart" ></div>
+        </div>
+	</script>
+
+	<script type="text/x-handlebars-template" id="overview-memory-widget-template">
+        <div class="well chart-box">
+        	<div id="overview-memory-widget-chart" ></div>
+        </div>
+	</script>
+
+	<script type="text/x-handlebars-template" id="overview-thread-widget-template">
+        <div class="well chart-box">
+        	<div id="overview-thread-widget-chart" ></div>
+        </div>
+	</script>
+
+	<script type="text/javascript" src="/resources/js/jquery/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="/resources/js/jquery/jquery.simple-dtpicker.js"></script>
+	<script type="text/javascript" src="/resources/js/bootstrap/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/resources/js/bootstrap/select2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/bootstrap/bootstrap-paginator.js"></script>
+	<script type="text/javascript" src="/resources/js/selectserver.js"></script>
+	<script type="text/javascript" src="/resources/js/hightchart/highcharts.js"></script>
+    <script type="text/javascript" src="/resources/js/jwatcher.js"></script>
+	<script type="text/javascript" src="/resources/js/handlebars/handlebars-v3.0.0.js"></script>
+	<script type="text/javascript" src="/resources/js/underscore/underscore-min.js"></script>
+	<script type="text/javascript" src="/resources/js/backbone/backbone-min.js"></script>
+
+	<script type="text/javascript" src="/resources/js/views/base-widget-view.js"></script>
+	<script type="text/javascript" src="/resources/js/views/base-nofresh-widget-view.js"></script>
+	<script type="text/javascript" src="/resources/js/views/base-info-widget-view.js"></script>
+	<script type="text/javascript" src="/resources/js/models/overview-widget-model.js"></script>
+	<script type="text/javascript" src="/resources/js/views/base-warningline-widget-view.js"></script>
+	<script type="text/javascript" src="/resources/js/views/overview-widget-view.js"></script>
+	<script type="text/javascript" src="/resources/js/app/handlerbar-helper.js"></script>
+	<script type="text/javascript" src="/resources/js/app/overview-app.js"></script>
+	<script type="text/javascript">
+  $(document).ready(function(el){
+       $(".select").select2({allowClear:true,width:'150px'});
+	   OverviewApp.init();
+	   hidePlaceHolder(".ignore");
+	   $(".refresh").on('click',function(e){
+	   e.stopPropagation();//阻止触发父元素的事件
+	   var type = $(this).attr("type");
+	   if(type=='topevent'){
+	     OverviewApp.topEventWidget.Refresh();
+	   }
+	   else if(type=='dbactive'){
+	     OverviewApp.overviewDBWidget.Refresh();
+	   }
+	   else if(type=='mactive'){
+	     OverviewApp.overviewMemoryWidget.Refresh();
+	   }
+	   else if(type=='tactive'){
+	     OverviewApp.overviewThreadWidget.Refresh();
+	   }else if(type=='connfail'){
+	     $("#queryAppBtn").click();
+	   }
+	   })
+
+	  $(".timepicker").appendDtpicker({
+         "autodateOnStart": false
+      });
+	  $("#queryAppBtn").on('click',function(){
+		var projectitem = $("#appgroup").find("option:selected").attr("value");
+    	var appitem = $("#application").find("option:selected").attr("value");
+    	var currentPage = 1;
+		var params = {project:projectitem,app:appitem,currentpage:currentPage};
+        OverviewApp.jmxFailConnWidget.LoadModel(params);
+
+	 });
+
+  });
+	 </script>
+

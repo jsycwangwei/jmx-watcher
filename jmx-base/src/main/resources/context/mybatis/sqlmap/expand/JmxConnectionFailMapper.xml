@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+<mapper namespace="com.focustech.jmx.DAO.JmxConnectionFailDAO">
+    <resultMap id="connFailMap" type="com.focustech.jmx.po.JmxConnectionFail">
+		<result property="recId" column="rec_id" jdbcType="BIGINT" />
+		<result property="hostId" column="host_id" jdbcType="INTEGER" />
+		<result property="appId" column="app_id" jdbcType="INTEGER" />
+		<result property="reason" column="reason" jdbcType="VARCHAR" />
+		<result property="addTime" column="add_time" jdbcType="TIMESTAMP" />
+    </resultMap>
+	<resultMap id="connFailDetailMap" type="com.focustech.jmx.pojo.JmxConnectionFailPOJO">
+		<result property="recId" column="rec_id" jdbcType="BIGINT" />
+		<result property="hostId" column="host_id" jdbcType="INTEGER" />
+		<result property="appId" column="app_id" jdbcType="INTEGER" />
+		<result property="reason" column="reason" jdbcType="VARCHAR" />
+		<result property="addTime" column="add_time" jdbcType="TIMESTAMP" />
+		<result property="appName" column="reason" jdbcType="VARCHAR" />
+		<result property="hostIp" column="add_time" jdbcType="VARCHAR" />
+    </resultMap>
+	<resultMap id="connFailStatisMap" type="com.focustech.jmx.pojo.JmxConnectionFailPOJO">
+		<result property="recId" column="rec_id" jdbcType="BIGINT" />
+		<result property="hostId" column="host_id" jdbcType="INTEGER" />
+		<result property="appId" column="app_id" jdbcType="INTEGER" />
+		<result property="reason" column="reason" jdbcType="VARCHAR" />
+		<result property="addTime" column="add_time" jdbcType="TIMESTAMP" />
+		<result property="appName" column="app_name" jdbcType="VARCHAR" />
+		<result property="hostIp" column="host_ip" jdbcType="VARCHAR" />
+		<result property="count" column="failcount" jdbcType="INTEGER" />
+    </resultMap>
+	<insert id="addFailRecord" parameterType="JmxConnectionFail">
+		insert into jmx_connectfail
+		(host_id,add_time,reason,app_id)
+		values
+		(#{hostId},#{addTime},#{reason},#{appId})
+	</insert>
+	<sql id="statis_conn_fail_info_condition">
+
+	<if test="appId !=null and appId !=0 ">
+		    and a.app_id=#{appId,jdbcType=INTEGER}
+	</if>
+    <if test="project !=null and project !='' ">
+		    and c.job_group=#{project,jdbcType=VARCHAR}
+	</if>
+</sql>
+<sql id="detail_conn_fail_info_condition">
+
+	<if test="appId !=null and appId !=0 ">
+		    and app_id=#{appId,jdbcType=INTEGER}
+	</if>
+    <if test="hostId !=null and hostId !=0 ">
+		    and host_id=#{hostId,jdbcType=INTEGER}
+	</if>
+	<if test="startDate !=null">
+			and add_time >= #{startDate,jdbcType=TIMESTAMP}
+	</if>
+	<if test="endDate !=null">
+			and add_time <![CDATA[<= #{endDate,jdbcType=TIMESTAMP}]]>
+	</if>
+</sql>
+	<select id="selectStatisFailRecord" resultMap="connFailStatisMap">
+		SELECT a.host_id,a.app_id,a.failcount,a.add_time,b.host_ip,c.job_name app_name FROM
+		(SELECT app_id,host_id ,COUNT(1) failcount, MAX(add_time) add_time FROM jmx_connectfail
+		WHERE add_time BETWEEN (NOW()-INTERVAL 24 HOUR) AND NOW()
+		 GROUP BY app_id,host_id) a,jmx_server b,jmx_task_schedule_job c
+         WHERE
+		a.app_id = b.app_id AND a.app_id=c.app_id AND a.host_id = b.host_id
+		AND b.jmx_status = 1
+		<include refid="statis_conn_fail_info_condition"/>
+		ORDER BY a.failcount DESC,a.add_time desc limit #{start},#{max}
+	</select>
+
+	<select id="selectStatisFailRecordCount" resultType="int">
+		SELECT COUNT(1) FROM
+		(SELECT app_id,host_id FROM jmx_connectfail
+		WHERE add_time BETWEEN (NOW()-INTERVAL 24 HOUR) AND NOW()
+		 GROUP BY app_id,host_id) a,jmx_server b,jmx_task_schedule_job c
+         WHERE
+		a.app_id = b.app_id  AND a.host_id = b.host_id AND a.app_id = c.app_id
+		AND b.jmx_status = 1
+		<include refid="statis_conn_fail_info_condition"/>
+	</select>
+
+	<select id="selectFailRecord" resultMap="connFailMap">
+		SELECT add_time,reason FROM jmx_connectfail
+		WHERE 1=1
+		<include refid="detail_conn_fail_info_condition"/>
+		ORDER BY add_time desc limit #{start},#{max}
+	</select>
+
+	<select id="selectFailRecordCount" resultType="int">
+		SELECT count(1) FROM jmx_connectfail
+		WHERE 1=1
+		<include refid="detail_conn_fail_info_condition"/>
+	</select>
+
+</mapper>

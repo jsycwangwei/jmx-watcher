@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
+<!--<![endif]-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>JMX监控</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- 国产双核浏览器用 start -->
+<meta name="renderer" content="webkit">
+<!-- 国产双核浏览器用 end -->
+<link rel="stylesheet" href="resources/css/new/account.css">
+</head>
+<body class="background1">
+	<div class="layout">
+		<div id="login_page" class="content">
+			<div id="myModal" class="modal fade in show-shadow" tabindex="-1"
+				role="dialog" aria-labelleby="myModallabel" aria-hidden="true"
+				style="display: block;">
+				<div class="modal-dialog login-modal" id="myModalDialog">
+					<div class="modal-content myModalContent">
+						<div class="modal-header myModalHeader">
+							<a href="#">
+								<img src="resources/image/logo.png" /></a>
+							<p>
+								<span id="modal-title">登录JMX</span>
+							</p>
+						</div>
+						<div class="modal-body myModalBody inner-form-wrapper">
+							<form class="no-margin form-login inner-form" action="login.html" method="post"
+								id="loginform-inner" novalidate="novalidate">
+								<fieldset>
+									<input type="hidden" name="encode" value="false">
+									<div class="form-group form-login">
+										<div class="input-group input-group-lg myInputGroup">
+											<input id="username" type="text"
+												class="form-control input-lg input-transparent"
+												placeholder="用户名" name="username"> <input
+												type="hidden" name="strong" value="false">
+										</div>
+									</div>
+									<div class="form-group form-login">
+										<div class="input-group input-group-lg myInputGroup">
+											<input id="psw" type="password" class="form-control input-lg input-transparent" placeholder="密码" name="password"> 
+											<input type="submit" class="iconfont loginButton buttonDisabled" name="submit" id="loginButton" value="">
+										</div>
+									</div>
+									<div class="form-group form-login">
+										<div
+											class="input-group input-group-lg myInputGroup home-button">
+											<div class="remember checkbox field login-f">
+												<input type="checkbox" value="1" name="remember" id="remember"> <label class="checkbox-wrapper" for="remember"> <span class="check_right_box">
+														<span class="check_right iconfont"></span>
+												</span> 记住密码
+												</label>
+											</div>
+											<div class="mobile-inner-footer">
+												<a href="#">尚未注册？</a>
+											</div>
+										</div>
+									</div>
+								</fieldset>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="layout-footer"></div>
+	</div>
+	<div class="footer footer-m">
+		<p class="copyright">Copyright @ 2016 Â© 2005-2016 焦点科技</p>
+	</div>
+
+</body>
+</html>

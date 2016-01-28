@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+<mapper namespace="com.focustech.jmx.DAO.JmxDatabaseDAO">
+	<resultMap id="JmxDatabaseResultMap" type="com.focustech.jmx.po.JmxDatabase">
+        <id column="rec_id" property="recId" jdbcType="INTEGER"/>
+        <result column="host_id" property="hostId" jdbcType="INTEGER"/>
+		<result column="app_id" property="appId" jdbcType="INTEGER"/>
+        <result column="active_count" property="activeCount" jdbcType="INTEGER"/>
+		<result column="idle_count" property="idleCount" jdbcType="INTEGER"/>
+        <result column="fail_conn_count" property="failConnCount" jdbcType="INTEGER"/>
+        <result column="add_time" property="addTime" jdbcType="TIMESTAMP"/>
+		<result column="abnormal_flg" property="abnormalFlg" jdbcType="INTEGER"/>
+    </resultMap>
+
+	<resultMap id="JmxDatabaseTotalResultMap" type="com.focustech.jmx.pojo.JmxDatabasePOJO">
+        <id column="rec_id" property="recId" jdbcType="INTEGER"/>
+        <result column="host_id" property="hostId" jdbcType="INTEGER"/>
+		<result column="app_id" property="appId" jdbcType="INTEGER"/>
+        <result column="active_count" property="activeCount" jdbcType="INTEGER"/>
+        <result column="app_id" property="appId" jdbcType="BIGINT"/>
+        <result column="app_name" property="appName" jdbcType="VARCHAR"/>
+		<result column="host_ip" property="hostIp" jdbcType="VARCHAR"/>
+    </resultMap>
+
+	<sql id="DB_Column_List">
+		rec_id,host_id,app_id,active_count,idle_count,fail_conn_count,abnormal_flg,add_time
+    </sql>
+	<insert id="insertDatabaseInfo" parameterType="JmxDatabase" useGeneratedKeys="true" keyProperty="recId">
+		insert into jmx_database
+		(host_id,app_id, active_count,idle_count,fail_conn_count,abnormal_flg,add_time)
+		values
+		(#{hostId},#{appId},#{activeCount},#{idleCount},#{failConnCount},#{abnormalFlg},#{addTime})
+	</insert>
+
+	<update id="updateDatabaseInfo">
+		update jmx_database
+		<set>
+			<if test="po.activeCount!=-1">
+				active_count=#{po.activeCount},
+			</if>
+			<if test="po.idleCount!=-1">
+				idle_count=#{po.idleCount},
+			</if>
+			<if test="po.failConnCount!=-1">
+				fail_conn_count=#{po.failConnCount},
+			</if>
+			<if test="po.abnormalFlg!=-1">
+				abnormal_flg=#{po.abnormalFlg}
+			</if>
+		</set>
+		where rec_id=#{po.recId}
+	</update>
+
+	<select id="selectDatabaseInfoByDate" resultMap="JmxDatabaseResultMap">
+        select
+        <include refid="DB_Column_List"/>
+		from jmx_database where host_id = #{hostId,jdbcType=INTEGER} and app_id = #{appId,jdbcType=INTEGER}
+		and add_time between #{from,jdbcType=TIMESTAMP} and #{to,jdbcType=TIMESTAMP} order by add_time
+    </select>
+
+	<select id="selectLastestDatabaseInfo" resultMap="JmxDatabaseResultMap">
+        select
+        <include refid="DB_Column_List"/>
+		from jmx_database where host_id = #{hostId,jdbcType=INTEGER}
+		and app_id = #{appId,jdbcType=INTEGER}
+		 order by add_time desc
+		 limit 0,1
+    </select>
+
+	<select id="selectDBActiveConn" resultMap="JmxDatabaseTotalResultMap">
+        SELECT a.active_count,a.host_id,c.host_ip,c.app_id,d.job_name app_name FROM jmx_database a ,(SELECT MAX(rec_id) rec_id
+		FROM jmx_database t WHERE t.active_count != -1 GROUP BY t.app_id,t.host_id) b,jmx_server c,jmx_task_schedule_job d
+		 WHERE a.rec_id = b.rec_id AND d.app_id = c.app_id
+        AND a.host_id = c.host_id AND a.app_id = c.app_id AND c.jmx_status = 1 ORDER BY a.app_id
+    </select>
+	<select id="getDBInfoByPrimaryKey" resultMap="JmxDatabaseResultMap">
+		select abnormal_flg from jmx_database
+		where rec_id=#{recId,jdbcType=INTEGER}
+	</select>
+</mapper>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+<mapper namespace="com.focustech.jmx.DAO.JmxMemoryDAO">
+	<resultMap id="JmxMemoryResultMap" type="com.focustech.jmx.po.JmxMemory">
+        <id column="rec_id" property="recId" jdbcType="INTEGER"/>
+        <result column="host_id" property="hostId" jdbcType="INTEGER"/>
+		<result property="appId" column="app_id" jdbcType="INTEGER" />
+        <result column="heap_memory_size" property="heapMemorySize" jdbcType="INTEGER"/>
+		<result column="noheap_memory_size" property="noHeapMemorySize" jdbcType="INTEGER"/>
+        <result column="eden_size" property="edenSize" jdbcType="INTEGER"/>
+		<result column="old_size" property="oldSize" jdbcType="INTEGER"/>
+        <result column="perm_size" property="permSize" jdbcType="INTEGER"/>
+		<result column="survivor_size" property="survivorSize" jdbcType="INTEGER"/>
+        <result column="add_time" property="addTime" jdbcType="TIMESTAMP"/>
+		<result column="abnormal_flg" property="abnormalFlg" jdbcType="INTEGER"/>
+    </resultMap>
+	<resultMap id="JmxMemoryTotalResultMap" type="com.focustech.jmx.pojo.JmxMemoryPOJO">
+        <id column="rec_id" property="recId" jdbcType="INTEGER"/>
+        <result column="host_id" property="hostId" jdbcType="BIGINT"/>
+		<result property="appId" column="app_id" jdbcType="BIGINT" />
+        <result column="heap_memory_size" property="heapMemorySize" jdbcType="INTEGER"/>
+		<result column="app_name" property="appName" jdbcType="VARCHAR"/>
+	    <result column="host_ip" property="hostIp" jdbcType="VARCHAR"/>
+    </resultMap>
+	<sql id="Memory_Column_List">
+		rec_id,host_id,heap_memory_size,noheap_memory_size,
+		eden_size,old_size,perm_size,survivor_size,abnormal_flg,add_time
+    </sql>
+	<select id="selectMemoryInfo" resultMap="JmxMemoryResultMap">
+        select
+        <include refid="Memory_Column_List"/>
+		from jmx_memory where host_id = #{hostId,jdbcType=INTEGER} and app_id = #{appId,jdbcType=INTEGER}
+		and add_time between #{from,jdbcType=TIMESTAMP} and #{to,jdbcType=TIMESTAMP} order by add_time
+    </select>
+
+	<select id="selectLastestMemoryInfo" resultMap="JmxMemoryResultMap">
+        select
+        <include refid="Memory_Column_List"/>
+		from jmx_memory where host_id = #{hostId,jdbcType=INTEGER}
+		and app_id = #{appId,jdbcType=INTEGER}
+        order by add_time desc
+		limit 0,1
+    </select>
+	<insert id="insertMemory" parameterType="JmxMemory" useGeneratedKeys="true" keyProperty="recId">
+		insert into jmx_memory
+		(host_id,app_id,heap_memory_size,noheap_memory_size,
+		eden_size,old_size,perm_size,survivor_size,abnormal_flg,add_time)
+		values
+		(#{hostId},#{appId},#{heapMemorySize},#{noHeapMemorySize},
+		#{edenSize},#{oldSize},#{permSize},#{survivorSize},#{abnormalFlg},
+		#{addTime})
+	</insert>
+	<update id="updateJavaMemory">
+		update jmx_memory
+		set heap_memory_size=#{heapMemory},
+		noheap_memory_size=#{noHeapMemory}
+		where rec_id=#{recId}
+	</update>
+
+	<update id="updateOld">
+		update jmx_memory set old_size=#{old}
+		where rec_id=#{recId}
+	</update>
+	<update id="updateEden">
+		update jmx_memory set eden_size=#{eden}
+		where rec_id=#{recId}
+	</update>
+	<update id="updateSurivor">
+		update jmx_memory set survivor_size=#{surivor}
+		where rec_id=#{recId}
+	</update>
+	<select id="getAllServerNowMemoryHeap" resultMap="JmxMemoryTotalResultMap">
+	SELECT a.heap_memory_size,a.host_id,c.host_ip,c.app_id,d.job_name app_name FROM jmx_memory a ,(SELECT MAX(rec_id) rec_id
+		FROM jmx_memory t WHERE t.heap_memory_size != -1 GROUP BY t.app_id,t.host_id) b,jmx_server c,jmx_task_schedule_job d WHERE a.rec_id = b.rec_id
+        AND a.host_id = c.host_id AND a.app_id = c.app_id AND d.app_id = a.app_id AND c.jmx_status = 1 ORDER BY c.app_id
+	</select>
+
+	<update id="updateAbnormalFlgByPrimaryKey">
+		update jmx_memory
+		set abnormal_flg=1
+		where rec_id=#{recId}
+	</update>
+
+	<select id="getMemoryInfoByPrimaryKey" resultMap="JmxMemoryResultMap">
+	    select abnormal_flg
+		from jmx_memory
+		where rec_id=#{recId}
+	</select>
+
+	<update id="updateMemoryInfoByPrimaryKey" parameterType="com.focustech.jmx.po.JmxMemory">
+		update jmx_memory
+		<set>
+			<if test="hostId!=null">
+				host_id=#{hostId},
+			</if>
+			<if test="appId!=null">
+				app_id=#{appId},
+			</if>
+			<if test="heapMemorySize!=-1">
+				heap_memory_size=#{heapMemorySize},
+			</if>
+			<if test="noHeapMemorySize !=-1">
+				noheap_memory_size=#{noHeapMemorySize},
+			</if>
+			<if test="edenSize!=-1">
+				eden_size=#{edenSize},
+			</if>
+			<if test="oldSize!=-1">
+				old_size=#{oldSize},
+			</if>
+			<if test="permSize!=-1">
+				perm_size=#{permSize},
+			</if>
+			<if test="survivorSize!=-1">
+				survivor_size=#{survivorSize},
+			</if>
+			<if test="addTime!=null">
+				add_time=#{addTime},
+			</if>
+			<if test="abnormalFlg!=null">
+				abnormal_flg=#{abnormalFlg},
+			</if>
+		</set>
+		where rec_id=#{recId}
+	</update>
+</mapper>

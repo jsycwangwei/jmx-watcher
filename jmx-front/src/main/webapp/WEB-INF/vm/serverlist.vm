@@ -1,0 +1,97 @@
+
+	<div class="page-content">
+		<ul class="breadcrumb">
+		<li>Monitor<span class="divider"> / ServerList</span></li>
+        </ul>
+		<div class="server-content">
+			#parse("common/serverselect.vm")
+    		<div class="serverlist">
+    			<div  id="serverlist-widget-placeholder">
+                </div>
+			</div>
+        </div>
+    </div>
+	<script type="text/x-handlebars-template" id="serverlist-widget-template">
+	   <table class="table table-bordered table-striped table-hover">
+    				<caption>
+    					应用列表
+                    </caption>
+    				<thead>
+    					<tr>
+                            <th></th>
+                            <th>应用名称</th>
+                            <th>应用运行健康指标数(24小时以内)</th>
+                        </tr>
+                    </thead>
+    				<tbody>
+					    {{#each this}}
+                        <tr class="applist" target="{{id}}" {{firstElemColor @index}}>
+    						<td>
+                                <div style="width:20px" class="fa-chevron-right" ></div>
+    						</td>
+                            <td>{{appname}}</td>
+    						<td>有{{failCount}}个异常</td>
+    					</tr>
+    					<tr  id="{{id}}" {{firstElemShow @index}}>
+    						<td colspan="3">
+    						<table class="table table-bordered table-striped table-hover">
+                        		<thead>
+                        			<tr>
+                                        <th>服务名称</th>
+                                        <th>运行健康指标数</th>
+                                        <!--<th>基本监控参数</th>-->
+                                    </tr>
+                                </thead>
+                        		<tbody>
+								    {{#each server}}
+                                    <tr>
+                                        <td><a href="/jmx/detail/database.html?server={{serverid}}&app={{../appid}}" target="_blank">{{servername}}</a></td>
+                        				<td>有{{failCount}}个异常</td>
+                                       <!-- <td>
+											{{#with params}}
+											   {{#hash this}}
+											      {{key}}:{{value}}
+											   {{/hash}}
+											{{/with}}
+                                        </td>
+									   -->
+                        			</tr>
+									{{/each}}
+                                </tbody>
+                            </table>
+    						</td>
+    					</tr>
+                       {{/each}}
+
+
+                    </tbody>
+                </table>
+    </script>
+	<script type="text/javascript" src="/resources/js/jquery/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="/resources/js/bootstrap/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/resources/js/bootstrap/select2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/selectserver.js"></script>
+	<script type="text/javascript" src="/resources/js/hightchart/highcharts.js"></script>
+	<script type="text/javascript" src="/resources/js/handlebars/handlebars-v3.0.0.js"></script>
+	<script type="text/javascript" src="/resources/js/underscore/underscore-min.js"></script>
+	<script type="text/javascript" src="/resources/js/backbone/backbone-min.js"></script>
+
+	<script type="text/javascript" src="/resources/js/views/base-nofresh-widget-view.js"></script>
+	<script type="text/javascript" src="/resources/js/models/serverlist-widget-model.js"></script>
+	<script type="text/javascript" src="/resources/js/views/serverlist-widget-view.js"></script>
+
+    <script type="text/javascript" src="/resources/js/app/handlerbar-helper.js"></script>
+	<script type="text/javascript" src="/resources/js/app/serverlist-app.js"></script>
+	<script type="text/javascript">
+  $(document).ready(function(el){
+       ServerListApp.init();
+	 $("#queryAppBtn").on('click',function(){
+		var projectitem = $("#appgroup").find("option:selected").attr("value");
+    	var appitem = $("#application").find("option:selected").attr("value");
+    	var params = {project:projectitem,appid:appitem};
+        ServerListApp.serverListWidget.LoadModel(params);
+
+	 });
+});
+	 </script>
+

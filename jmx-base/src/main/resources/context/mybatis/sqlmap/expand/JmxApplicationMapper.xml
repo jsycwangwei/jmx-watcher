@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+<mapper namespace="com.focustech.jmx.DAO.JmxApplicationDAO">
+	<resultMap id="BaseResultMap" type="com.focustech.jmx.po.JmxApplication">
+        <id column="app_id" property="appId" jdbcType="BIGINT"/>
+        <result column="app_name" property="appName" jdbcType="VARCHAR"/>
+        <result column="app_disp" property="appDesc" jdbcType="VARCHAR"/>
+    </resultMap>
+
+	<select id="selectAllMonitorProjects" resultType="java.lang.String">
+        select distinct a.job_group
+		from jmx_task_schedule_job a , jmx_server b
+		where a.app_id=b.app_id
+		and b.jmx_status=1
+    </select>
+	<select id="selectAllProjects" resultType="java.lang.String">
+        select distinct a.job_group
+        from jmx_task_schedule_job a,jmx_server b
+		where a.app_id=b.app_id
+    </select>
+	<select id="selectMonitorAppsByProject" resultMap="BaseResultMap"
+	parameterType="java.lang.String">
+        select distinct a.app_id,a.job_name as app_name
+        from jmx_task_schedule_job a,jmx_server b
+		where a.app_id=b.app_id
+		and b.jmx_status=1
+		<if test="project != null">
+		    and a.job_group = #{project}
+		</if>
+    </select>
+
+	<select id="selectAppsByProject" resultMap="BaseResultMap"
+	parameterType="java.lang.String">
+        select distinct a.app_id,a.job_name as app_name
+        from jmx_task_schedule_job a,jmx_server b
+		where a.app_id=b.app_id
+		<if test="project != null">
+		    and a.job_group = #{project}
+		</if>
+    </select>
+
+	<select id="selectAppByAppId" resultMap="BaseResultMap"
+	parameterType="java.lang.Integer">
+        select app_id,job_name as app_name
+        from jmx_task_schedule_job
+		where app_id = #{appid}
+		limit 0,1
+    </select>
+
+
+</mapper>

@@ -1,0 +1,6 @@
+	<div class="head">
+		<div class="head-title">JWatcher<img src="/resources/image/logo.png" width="110px" height="35px"></div>
+		<div class="head-tools">
+            <a href="/logout.html">注销</a>
+		</div>
+	</div>

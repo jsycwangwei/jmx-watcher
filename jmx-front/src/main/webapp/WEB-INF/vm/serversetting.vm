@@ -1,0 +1,79 @@
+<div class = "page-content">
+	<ul class="breadcrumb">
+		<li>Settings<span class="divider"> / serverSetting</span></li>
+    </ul>
+	<div class="container-fluid" style="margin-top:20px">
+       <div id="setting-container" class="row">
+		   <div class="col-md-4">
+			    <div class="setting-group">
+					<div class="group-title">
+						<h4>项目组</h4>
+					</div>
+    				<ul>
+						#if($!projects)
+							#foreach($!project in $!projects)
+								<li><div value="$!project" class="project item">$!project</div></li>
+							#end
+						#end
+						<input id="selectedProject" type="text" style="display:none" value="multi"/>
+
+                    </ul>
+                </div>
+           </div>
+		   <div id="serversetting-widget-placeholder" class="col-md-8">
+
+           </div>
+       </div>
+    </div>
+</div>
+<script type="text/x-handlebars-template" id="serversetting-widget-template">
+	   <div class="col-md-6">
+			   <div class="setting-group">
+					<div class="group-title">
+						<h4>应用</h4>
+					</div>
+    				<ul>
+						  {{#each appdata}}
+                         <li><div id="app{{appid}}" class="application item">{{appname}}</div></li>
+						{{/each}}
+                    </ul>
+                </div>
+           </div>
+		   <div class="col-md-6">
+			<div class="setting-group">
+					<div class="group-title">
+						<h4>应用点</h4>
+					</div>
+    				<ul>
+					     {{#each serverdata}}
+                        <li><div class="row">
+								<div id="app{{appid}}-s{{serverid}}" monitorstatus="{{monitor}}" class="server item col-md-6">{{servername}}</div>
+								<div class="col-md-6">
+                                    {{#unless monitor}}
+									<a class="btn no-padding add-monitor" href="javascript:" value="app{{appid}}-s{{serverid}}"><i class="fa-plus-circle"></i>添加监控</a>
+                                    {{/unless}}
+									{{#unless unmonitor}}
+									<a class="btn no-padding cancel-monitor" href="javascript:" value="app{{appid}}-s{{serverid}}"><i class="fa-minus-circle"></i>取消监控</a>
+									{{/unless}}
+								</div>
+						</div></li>
+						{{/each}}
+
+                    </ul>
+                </div>
+           </div>
+    </script>
+<script type="text/javascript" src="/resources/js/jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="/resources/js/jquery/jquery-ui-1.9.2-min.js"></script>
+<script type="text/javascript" src="/resources/js/jsplumb/jquery.jsPlumb-1.7.2-min.js"></script>
+<script type="text/javascript" src="/resources/js/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="/resources/js/handlebars/handlebars-v3.0.0.js"></script>
+<script type="text/javascript" src="/resources/js/underscore/underscore-min.js"></script>
+<script type="text/javascript" src="/resources/js/backbone/backbone-min.js"></script>
+
+<script type="text/javascript" src="/resources/js/views/base-nofresh-widget-view.js"></script>
+<script type="text/javascript" src="/resources/js/models/serversetting-widget-model.js"></script>
+<script type="text/javascript" src="/resources/js/views/serversetting-widget-view.js"></script>
+<script type="text/javascript" src="/resources/js/app/handlerbar-helper.js"></script>
+<script type="text/javascript" src="/resources/js/app/serversetting-app.js"></script>
+<script type="text/javascript" src="/resources/js/jsplumb/serverPlumb.js"></script>

@@ -1,0 +1,34 @@
+<h3 class="page-title">$!appObj.appName/监控服务详情页/$!serverObj.hostIp</h3>
+		<div class="navbar navbar-default" role="navigation">
+			<div>
+				<ul class="nav navbar-nav">
+                    <li #if($!page == 'db') class="active" style="position:relative" #end><a href="/jmx/detail/database.html?server=$!serverObj.hostId&app=$!serverObj.appId">
+									<span class="corner">$!db_error</span>
+								数据库</a></li>
+					<li #if($!page == 'memory') class="active" #end><a href="/jmx/detail/memory.html?server=$!serverObj.hostId&app=$!serverObj.appId">
+									<span class="corner">$!memory_error</span>
+								内存</a></li>
+					<li #if($!page == 'thread') class="active" #end><a href="/jmx/detail/thread.html?server=$!serverObj.hostId&app=$!serverObj.appId">
+									<span class="corner">$!thread_error</span>
+								线程</a></li>
+
+					<li #if($!page == 'gc') class="active" #end><a href="/jmx/detail/gc.html?server=$!serverObj.hostId&app=$!serverObj.appId">
+									<span class="corner">$!gc_error</span>
+								CMS收集</a></li>
+					<li #if($!page == 'cpu') class="active" #end><a href="/jmx/detail/cpu.html?server=$!serverObj.hostId&app=$!serverObj.appId">
+					            CPU</a></li>
+					<li #if($!page == 'dump') class="active" #end><a href="/jmx/detail/dump.html?server=$!serverObj.hostId&app=$!serverObj.appId">
+								堆栈信息</a></li>
+					<li #if($!page == 'failconn') class="active" #end><a href="/jmx/detail/failconn.html?server=$!serverObj.hostId&app=$!serverObj.appId">
+					                              失效连接</a></li>
+					<li #if($!page == 'sub') class="active" #end><a href="/jmx/detail/sub.html?server=$!serverObj.hostId&app=$!serverObj.appId">
+					                              订阅信息</a></li>
+
+
+                </ul>
+            </div>
+			<div style="display:none">
+				<input type="text" name="server" value="$!serverObj.hostId"/>
+				<input type="text" name="app" value="$!serverObj.appId"/>
+            </div>
+        </div>

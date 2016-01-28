@@ -1,0 +1,48 @@
+
+            <div class="server-search">
+                <ul>
+                    <li #if($!ignore) class="ignore ignoreHeight" #end>
+    					<label >选择项目：</label>
+                        <select id="appgroup">
+						  #if($!isneedAll)
+						  <option  value="">
+									*请选择项目*
+                                </option>
+						  #end
+						  #if($!projects)
+							#foreach($!project in $!projects)
+								<option  value="$!project">
+									$!project
+                                </option>
+							#end
+						  #end
+						</select>
+    				</li>
+    			    <li #if($!ignore) class="ignore ignoreHeight" #end>
+    					<label >选择应用：</label>
+                        <select id="application">
+						#if($!isneedAll)
+						<option  value="">
+									*请选择应用*
+                                </option>
+						#end
+						#if($!apps)
+							#foreach($!app in $!apps)
+								<option value="$!app.appId">
+									$!app.appName
+                                </option>
+							#end
+						#end
+						</select>
+    				</li>
+    				<li #if($!ignore) class="ignore ignoreHeight" #end>
+    					<div class="btn-group">
+    						<button id="queryAppBtn" type="button" class="btn btn-info">
+    							查询
+                            </button>
+                        </div>
+    				</li>
+    			</ul>
+
+    		</div>
+

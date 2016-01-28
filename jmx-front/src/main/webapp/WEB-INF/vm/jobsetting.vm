@@ -1,0 +1,153 @@
+
+<div class = "page-content">
+	<ul class="breadcrumb">
+		<li>Settings<span class="divider"> / jobSetting</span></li>
+    </ul>
+	<div class="container-fluid" style="margin-top:20px">
+	<div class="panel-group">
+			<div class="panel panel-info">
+    			<div class="panel-heading toggle" data-target="#normalForm" style="padding:2px 15px">
+    				<div class="panel-title">
+					  <div class="caption">
+						应用Job配置
+                      </div>
+                       <div class="actions">
+					    <a  href="javascript:;"  class="btn">
+							<i class="fa-angle-double-down"></i></a>
+					   </div>
+                    </div>
+                </div>
+				<div class="panel-body">
+					<form id="normalForm" method="post">
+
+                		<table class="table table-bordered table-striped table-hover">
+                			<thead>
+                				<tr>
+                					<th style="width: 20xp">id</th>
+                					<th>name</th>
+                					<th>group</th>
+                					<th>状态&nbsp;&nbsp;</th>
+                					<th>cron表达式</th>
+                					<th>描述</th>
+                					<th>同步否</th>
+                					<th>spring id</th>
+                					<th>方法名</th>
+                					<th>操作</th>
+                				</tr>
+                			</thead>
+                			<tbody>
+                				#foreach($job in ${normaltask})
+                					<tr>
+                						<td class="unedit" name="jobid" type="normal">$job.jobId</td>
+                                        <td class="unedit" name="jobname" type="normal">$job.jobName</td>
+                                        <td class="unedit" name="jobgroup" type="normal">$job.jobGroup</td>
+                                        <td class="editable" type="select" name="jobstatus" orign="#if($job.jobStatus=="1")启用#else禁用#end" options="禁用&启用" values="0&1">#if($job.jobStatus=="1") 启用 #else 禁用#end</td>
+                                        <td class="editable" type="text" name="jobcronexpression" orign="$job.cronExpression">$job.cronExpression </td>
+                                        <td class="editable" type="text" name="jobdescription" orign="$job.description">$job.description</td>
+                                        <td class="editable" type="select" name="isconcurrent" orign="#if($job.isConcurrent=="1")是#else否#end" options="否&是" values="0&1">#if($job.isConcurrent=="1")是#else 否#end</td>
+                                        <td class="editable" type="text" name="springid" orign="$job.springId">$job.springId</td>
+                                        <td class="editable" type="text" name="methodname" orign="$job.methodName">$job.methodName</td>
+                						<td class="operation"><input type="button" class="editoper btn" value="编辑"></input>
+											<input type="button" class="saveoper btn disabled" value="保存"></input>
+										</td>
+                					</tr>
+                				#end
+                				<tr>
+                					<td>n</td>
+                					<td><input type="text" name="jobName" id="jobName"></input></td>
+                					<td><input type="text" name="jobGroup" id="jobGroup"></input></td>
+                					<td>0<input type="hidden" name="jobStatus" value="0"></input></td>
+                					<td><input type="text" name="cronExpression"
+                						id="cronExpression"></input></td>
+                					<td><input type="text" name="description" id="description"></input></td>
+                					<td><select name="isConcurrent" id="isConcurrent">
+                							<option value="1">启用</option>
+                							<option value="0">禁用</option>
+                					</select></td>
+                					<td><input type="text" name="springId" id="springId"></input></td>
+                					<td><input type="text" name="methodName" id="methodName"></input></td>
+                					<td><input type="button" class="btn disabled" value="添加" /></td>
+                				</tr>
+                			</tbody>
+                		</table>
+                	</form>
+                </div>
+            </div>
+            <div style="margin-top:20px"></div>
+			<div class="panel panel-info">
+    			<div class="panel-heading toggle" data-target="#commonForm" style="padding:2px 15px">
+    				<div class="panel-title">
+					  <div class="caption">
+						通用Job配置
+                      </div>
+                       <div class="actions">
+					    <a  href="javascript:;"  class="btn">
+							<i class="fa-angle-double-down"></i></a>
+					   </div>
+                    </div>
+                  </div>
+				  <div class="panel-body">
+				<form id="commonForm" method="post">
+
+            		<table class="table table-bordered table-striped table-hover">
+            			<thead>
+            				<tr>
+            					<th style="width: 20xp">id</th>
+            					<th>name</th>
+            					<th>group</th>
+            					<th>状态&nbsp;&nbsp;</th>
+            					<th>cron表达式</th>
+            					<th>描述</th>
+            					<th>同步否</th>
+            					<th>spring id</th>
+            					<th>方法名</th>
+            					<th>操作</th>
+            				</tr>
+            			</thead>
+            			<tbody>
+            				#foreach($job in ${commontask})
+                					<tr>
+                						<td class="unedit" name="jobid" type="normal">$job.jobId</td>
+                                        <td class="unedit" name="jobname" type="normal">$job.jobName</td>
+                                        <td class="unedit" name="jobgroup" type="normal">$job.jobGroup</td>
+                                        <td class="editable" type="select" name="jobstatus" orign="#if($job.jobStatus=="1")启用 #else禁用#end" options="禁用&启用" values="0&1">#if($job.jobStatus=="1") 启用 #else 禁用#end</td>
+                                        <td class="editable" type="text" name="jobcronexpression" orign="$job.cronExpression">$job.cronExpression</td>
+                                        <td class="editable" type="text" name="jobdescription" orign="$job.description">$job.description</td>
+                                        <td class="editable" type="select" name="isconcurrent" orign="#if($job.isConcurrent=="1")是#else否#end" options="否&是" values="0&1">#if($job.isConcurrent=="1")是#else 否#end</td>
+                                        <td class="editable" type="text" name="springid" orign="$job.springId">$job.springId</td>
+                                        <td class="editable" type="text" name="methodname" orign="$job.methodName">$job.methodName</td>
+                						<td class="operation"><input type="button" class="editoper btn" value="编辑"></input>
+											<input type="button" class="saveoper btn disabled" value="保存"></input>
+										</td>
+                					</tr>
+                				#end
+                				<tr>
+                					<td>n</td>
+                					<td><input type="text" name="jobName" id="jobName"></input></td>
+                					<td><input type="text" name="jobGroup" id="jobGroup"></input></td>
+                					<td>0<input type="hidden" name="jobStatus" value="0"></input></td>
+                					<td><input type="text" name="cronExpression"
+                						id="cronExpression"></input></td>
+                					<td><input type="text" name="description" id="description"></input></td>
+                					<td><select name="isConcurrent" id="isConcurrent">
+                							<option value="1">启用</option>
+                							<option value="0">禁用</option>
+                					</select></td>
+                					<td><input type="text" name="springId" id="springId"></input></td>
+                					<td><input type="text" name="methodName" id="methodName"></input></td>
+                					<td><input type="button" class="btn disabled" value="添加" /></td>
+                				</tr>
+            			</tbody>
+            		</table>
+            	</form>
+                  </div>
+             </div>
+
+    </div>
+
+    <script type="text/javascript" src="/resources/js/jquery/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="/resources/js/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/resources/js/jwatcher.js"></script>
+
+    </div>
+</div>

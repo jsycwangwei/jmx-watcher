@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+<mapper namespace="com.focustech.jmx.DAO.JmxCpuDAO">
+	<resultMap id="CpuResultMap" type="com.focustech.jmx.po.JmxCpu">
+        <id column="rec_id" property="recId" jdbcType="BIGINT"/>
+        <result column="host_id" property="hostId" jdbcType="INTEGER"/>
+		<result column="app_id" property="appId" jdbcType="INTEGER"/>
+        <result column="cpu_usage" property="cpuUsage" jdbcType="FLOAT"/>
+		<result column="abnormal_flg" property="abnormalFlg" jdbcType="INTEGER"/>
+		<result column="add_time" property="addTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+	<sql id="Cpu_Column_List">
+		rec_id,host_id,cpu_usage,app_id,abnormal_flg,add_time
+    </sql>
+
+	<insert id="insertCpuInfo" useGeneratedKeys="true" keyProperty="recId" parameterType="com.focustech.jmx.po.JmxCpu">
+		insert into jmx_cpu
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="hostId !=null">
+			host_id,
+		</if>
+		<if test="appId !=null">
+			app_id,
+		</if>
+		<if test="cpuUsage !=null">
+			cpu_usage,
+		</if>
+		<if test="abnormalFlg !=null">
+			abnormal_flg,
+		</if>
+		<if test="addTime !=null">
+			add_time
+		</if>
+	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides=",">
+		<if test="hostId !=null">
+			#{hostId},
+		</if>
+		<if test="appId !=null">
+			#{appId},
+		</if>
+
+		<if test="cpuUsage !=null">
+			#{cpuUsage},
+		</if>
+		<if test="abnormalFlg !=null">
+			#{abnormalFlg},
+		</if>
+		<if test="addTime !=null">
+			 #{addTime}
+		</if>
+	</trim>
+	</insert>
+
+	<select id="selectCpuInfoByDate" resultMap="CpuResultMap">
+        select
+        <include refid="Cpu_Column_List"/>
+		from jmx_cpu where host_id = #{hostId,jdbcType=INTEGER} and app_id = #{appId,jdbcType=INTEGER}
+		and add_time between #{from,jdbcType=TIMESTAMP} and #{to,jdbcType=TIMESTAMP} order by add_time
+    </select>
+
+	<select id="selectLastestCpuInfo" resultMap="CpuResultMap">
+        select
+        <include refid="Cpu_Column_List"/>
+		from jmx_cpu where host_id = #{hostId,jdbcType=INTEGER}
+		and app_id = #{appId,jdbcType=INTEGER}
+		 order by add_time desc
+		 limit 0,1
+    </select>
+</mapper>

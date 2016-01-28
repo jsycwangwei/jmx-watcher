@@ -1,0 +1,104 @@
+<div class = "page-content">
+	<ul class="breadcrumb">
+		<li>Settings<span class="divider"> / appSetting</span></li>
+    </ul>
+    <div class="server-content">
+    	#parse("common/serverselect.vm")
+    </div>
+    <div style="clear:both"></div>
+	<div style="margin-top:10px" id="appsetting-widget-placeholder">
+
+    </div>
+</div>
+<script  type="text/x-handlebars-template" id="appsetting-widget-template">
+  <ul id="appSettingTab" class="nav nav-tabs">
+            {{#each this}}
+        	<li><a href="#{{paramName}}">{{paramName}}配置</a></li>
+			{{/each}}
+         </ul>
+        <div class="tab-content">
+		    {{#each this}}
+            <div class="tab-pane" id="{{paramName}}">
+				<table class="table table-bordered table-striped table-hover">
+    				<caption>
+    					{{paramName}}参数配置项
+                    </caption>
+    				<thead>
+    					<tr>
+                            <th>参数键Key</th>
+                            <th>参数描述</th>
+                            </th>
+                            <th>当前配置值</th>
+							<th></th>
+                        </tr>
+                    </thead>
+    				<tbody>
+					    {{#with params}}
+						{{#each this}}
+                        <tr>
+                            <td>{{paramKey}}</td>
+							<td>{{paramDesc}}</td>
+                            <td><input id="{{../../paramName}}-{{paramKey}}"  type="text" value="{{paramValue}}"/><span>
+                            {{getParamUnit ../../paramName}}</span></td>
+							<td><div><input style="float:left" class ="saveparam btn" paramName="{{../../paramName}}" paramKey="{{paramKey}}" paramType="{{paramType}}"
+							appid="{{appid}}"
+                            type="button" value="保存"/><div style="display:none;" class="appsavestatus ok">&nbsp&nbsp</div></div></td>
+    					</tr>
+						{{/each}}
+						{{/with}}
+
+                    </tbody>
+                </table>
+    		</div>
+			{{/each}}
+
+        </div>
+</script>
+<script type="text/javascript" src="/resources/js/jquery/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="/resources/js/bootstrap/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/resources/js/bootstrap/select2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/selectserver.js"></script>
+	<script type="text/javascript" src="/resources/js/hightchart/highcharts.js"></script>
+	<script type="text/javascript" src="/resources/js/handlebars/handlebars-v3.0.0.js"></script>
+	<script type="text/javascript" src="/resources/js/underscore/underscore-min.js"></script>
+	<script type="text/javascript" src="/resources/js/backbone/backbone-min.js"></script>
+
+	<script type="text/javascript" src="/resources/js/views/base-nofresh-widget-view.js"></script>
+
+    <script type="text/javascript" src="/resources/js/models/appsetting-widget-model.js"></script>
+	<script type="text/javascript" src="/resources/js/views/appsetting-widget-view.js"></script>
+
+    <script type="text/javascript" src="/resources/js/app/handlerbar-helper.js"></script>
+	<script type="text/javascript" src="/resources/js/app/appsetting-app.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    var project = $("#appgroup").find("option:selected").attr("value");
+	if(project){
+    $.ajax({
+				url:'/api/project/apps',
+				dataType:'json',
+				type:"POST",
+				asyn:false,
+				data:{project:project},
+                complete:function(data,status){
+				$("#application").select2({
+				width:150,
+				data: eval("("+data.responseText+")")
+				 });
+				 ServerSettingApp.init();
+				}
+				});
+
+	}
+	$("#queryAppBtn").on("click",function(){
+	   var appitem = $("#application").find("option:selected").attr("value");
+	   if(appitem == ""){
+	     alert("应用不能为空");
+		 return;
+	   }
+	   var params = {app:appitem};
+       ServerSettingApp.appSettingWidget.LoadModel(params);
+	})
+
+  });
+</script>

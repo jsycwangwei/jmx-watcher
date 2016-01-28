@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+<mapper namespace="com.focustech.jmx.DAO.JmxCmsDAO">
+	<resultMap id="CmsResultMap" type="com.focustech.jmx.po.JmxCms">
+        <id column="rec_id" property="recId" jdbcType="BIGINT"/>
+        <result column="host_id" property="hostId" jdbcType="INTEGER"/>
+		<result column="host_id" property="hostId" jdbcType="INTEGER"/>
+        <result column="start_time" property="startTime" jdbcType="BIGINT"/>
+		<result column="duration" property="duration" jdbcType="INTEGER"/>
+		<result column="collection_size" property="collectionSize" jdbcType="INTEGER"/>
+		<result column="abnormal_flg" property="abnormalFlg" jdbcType="INTEGER"/>
+		<result column="add_time" property="addTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+	<sql id="Cms_Column_List">
+		rec_id,host_id,start_time,duration,
+		collection_size,abnormal_flg,add_time
+    </sql>
+
+	<select id="selectLastGcTime" resultType="Integer">
+		select count(*)
+		from jmx_cms
+		where host_id=#{hostId}
+		and app_id=#{appId}
+		and start_time=#{startTime}
+	</select>
+
+	<select id="selectCmsInfoByDate" resultMap="CmsResultMap">
+		select <include refid="Cms_Column_List"/>
+		from jmx_cms where host_id=#{hostId} and app_id = #{appId}
+        and add_time between #{from,jdbcType=TIMESTAMP} and #{to,jdbcType=TIMESTAMP} order by add_time
+	</select>
+
+	<select id="selectLastestCmsInfo" resultMap="CmsResultMap">
+		select <include refid="Cms_Column_List"/>
+		from jmx_cms where host_id=#{hostId} and app_id=#{appId} order by add_time desc limit 1
+	</select>
+
+	<insert id="insertLastGcInfo" useGeneratedKeys="true" keyProperty="recId" parameterType="com.focustech.jmx.po.JmxCms">
+		insert into jmx_cms
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="hostId !=null">
+			host_id,
+		</if>
+		<if test="appId !=null">
+			app_id,
+		</if>
+		<if test="startTime !=null">
+			start_time,
+		</if>
+		<if test="duration !=null">
+			duration,
+		</if>
+		<if test="collectionSize !=null">
+			collection_size,
+		</if>
+		<if test="abnormalFlg !=null">
+			abnormal_flg,
+		</if>
+		<if test="addTime !=null">
+			add_time,
+		</if>
+	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides=",">
+		<if test="hostId !=null">
+			#{hostId},
+		</if>
+		<if test="appId !=null">
+			#{appId},
+		</if>
+		<if test="startTime !=null">
+			#{startTime},
+		</if>
+		<if test="duration !=null">
+			#{duration},
+		</if>
+		<if test="collectionSize !=null">
+			#{collectionSize},
+		</if>
+		<if test="abnormalFlg !=null">
+			#{abnormalFlg},
+		</if>
+		<if test="addTime !=null">
+			 #{addTime},
+		</if>
+	</trim>
+	</insert>
+	<update id="updateLastGcInfo">
+		update jmx_cms
+		<set>
+			<if test="startTime!=null">
+				start_time=#{startTime},
+			</if>
+			<if test="duration!=-1">
+				duration=#{duration},
+			</if>
+			<if test="collectionSize!=-1">
+				collection_size=#{collectionSize},
+			</if>
+			<if test="addTime!=null">
+				add_time=#{addTime},
+			</if>
+			<if test="abnormalFlg!=-1">
+				abnormal_flg=#{abnormalFlg},
+			</if>
+		</set>
+		where rec_id=#{recId}
+	</update>
+	<delete id="delSameInfo">
+		delete from jmx_cms where rec_id=#{recId}
+	</delete>
+</mapper>

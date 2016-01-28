@@ -1,0 +1,199 @@
+   <div class="page-content">
+	#parse("common/detail/detail_head.vm")
+
+	<div class="container-fluid">
+        <div id="container">
+
+        </div>
+		<hr/>
+		<div class="server-search row">
+       <div class="server-search">
+		<form action="/jmx/detail/dump.html" method="get">
+                <ul>
+                    <li>
+    					<label for="dumpType">选择dump类型：
+                        </label><select id="dumpType" name="dumpType">
+							<option value="">
+								*dump类型*
+                            </option>
+            				<option value="jvm_thread_count" #if($!{dumpType}=='jvm_thread_count')selected #end>
+            					线程数超过阀值
+                            </option>
+            				<option value="dead_lock" #if($!{dumpType}=='dead_lock')selected #end>
+            					线程死锁
+                            </option>
+            				<option value="cpu_usage" #if($!{dumpType}=='cpu_usage')selected #end>
+            					cpu负载超过阀值
+                            </option>
+                            <option value="normal_dump" #if($!{dumpType}=='normal_dump')selected #end>
+                                                                                       正常dump
+                            </option>
+							<option value="db_conn_count" #if($!{dumpType}=='db_conn_count')selected #end>
+                                                                                       数据库连接数过高
+                            </option>
+							<option value="jvm_cms_abnormal" #if($!{dumpType}=='jvm_cms_abnormal')selected #end>
+                                JVMCMS异常
+                            </option>
+							<option value="jvm_memory_abnormal" #if($!{dumpType}=='jvm_memory_abnormal')selected #end>
+								内存异常
+                            </option>
+                        </select>
+    				</li>
+    			    <li>
+    					<label for="startdate">
+        					选择开始时间：
+                        </label>
+        				<input id="startdate" name="startdate" type="text" class="timepicker" value="$!{start}" style="border-radius:4px">
+                        </input>
+    				</li>
+					<li>
+            			<label for="enddate">
+        					选择结束时间：
+                        </label>
+        				<input id="enddate" name="enddate" type="text" class="timepicker" value="$!{end}" style="border-radius:4px">
+                        </input>
+
+    				</li>
+    				<li>
+    					<div>
+							<input  name="server" type="text" value="$!serverObj.hostId" style="display:none"/>
+							<input  name="app" type="text" value="$!serverObj.appId" style="display:none"/>
+    						<input  id="queryAppBtn" type="submit" class="btn btn-info" value="查询"/>
+                        </div>
+    				</li>
+    			</ul>
+          </form>
+	   </div>
+
+        </div>
+
+		<div style="margin-top:20px;margin-left:10px;margin-right:10px">
+			<table class="table table-bordered table-striped table-hover">
+    				<caption>
+    					Dump 列表
+                    </caption>
+    				<thead>
+    					<tr>
+                            <th>dump原因</th>
+							<th>dump时间</th>
+                            <th><a href="/jmx/dumpnow/download.html?server=$!serverObj.hostId&app=$!serverObj.appId">下载（now）</a></th>
+                        </tr>
+                    </thead>
+    				<tbody>
+    				#foreach($dumpInfo in $!dumpInfos)
+    				<tr>
+    				   <td>#if(!$dumpInfo.reason) 未知dump类型 #else $!{dumpInfo.reason} #end</td>
+    				   <td>$convertUtil.convertDateToString($dumpInfo.addTime,'')</td>
+    				     <td><a href="/jmx/dumpfile/download.html?filePath=$!{dumpInfo.filePath}" target="_self">下载</a></td>
+    				</tr>
+    				#end
+                   </tbody>
+                </table>
+                <div style="float:right">
+                $!{paginationBar}
+                </div>
+			</div>
+			</div>
+        </div>
+	</div>
+    </div>
+	<script type="text/x-handlebars-template" id="dump-widget-template">
+        <h3>Dump信息</h3>
+		<div id="dump-widget-chart"></div>
+	</script>
+	<script type="text/javascript" src="/resources/js/jquery/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="/resources/js/date.js"></script>
+	<script type="text/javascript" src="/resources/js/bootstrap/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/resources/js/jquery/jquery-ui-1.9.2-min.js"></script>
+	<script type="text/javascript" src="/resources/js/jquery/jquery.simple-dtpicker.js"></script>
+    <script type="text/javascript" src="/resources/js/hightchart/highcharts.js"></script>
+	<script type="text/javascript" src="/resources/js/bootstrap/select2.min.js"></script>
+	<script type="text/javascript">
+
+</script>
+	<script>
+$(function () {
+    var serverid = $("input[name=server]").val();
+	var appid = $("input[name=app]").val();
+	var xcategory = new Array();
+	var values = new Array();
+    $("#dumpType").select2({allowClear:true,width:150});
+    var chart = $('#container').highcharts({
+        chart: {
+            type: 'areaspline'
+        },
+        title: {
+            text: '最近七天dump情况'
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'left',
+            verticalAlign: 'top',
+            x: 150,
+            y: 100,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor: '#FFFFFF'
+        },
+        xAxis: {
+            categories: xcategory
+
+        },
+        yAxis: {
+            title: {
+                text: 'dump count'
+            },
+          allowDecimals:false
+        },
+        tooltip: {
+            shared: true,
+            valueSuffix: ' 个'
+        },
+        credits: {
+            enabled: false
+        },
+        plotOptions: {
+            areaspline: {
+                fillOpacity: 0.5
+            }
+        },
+        series: [{
+            name: 'dump total',
+			data:[]
+        }]
+    });
+
+	$.ajax({
+			url:'/api/detail/main/dumpcount',
+			dataType:'json',
+			type:"POST",
+			aysn:false,
+			data:{server:serverid,app:appid},
+            complete:function(data,status){
+			  if(status=='success'){
+			     $.each(eval("("+data.responseText+")"),function(index,obj){
+				 xcategory.push(obj[0]);
+				 values.push(obj[1]);
+
+				 })
+				 var dumpchart=chart.highcharts();
+				 dumpchart.series[0].update(
+            		{
+                        data: values
+
+                    }
+            	);
+			  }
+			}
+			});
+
+			  $(".timepicker").appendDtpicker({
+	             "autodateOnStart": false
+              });
+
+
+
+});
+
+
+    </script>

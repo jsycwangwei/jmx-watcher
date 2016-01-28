@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+<mapper namespace="com.focustech.jmx.DAO.JmxServerDAO">
+	<resultMap id="JmxServerResultMap" type="com.focustech.jmx.po.JmxServer">
+		<result column="rec_id" property="recId" jdbcType="BIGINT"/>
+        <result column="app_id" property="appId" jdbcType="INTEGER"/>
+		<result column="host_id" property="hostId" jdbcType="INTEGER"/>
+        <result column="jmx_port" property="jmxPort" jdbcType="INTEGER"/>
+        <result column="jmx_status" property="jmxStatus" jdbcType="INTEGER"/>
+        <result column="host_ip" property="hostIp" jdbcType="VARCHAR"/>
+		<result column="data_source" property="dataSource" jdbcType="VARCHAR"/>
+		<result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+	<resultMap id="JmxServerExtraMap" type="com.focustech.jmx.pojo.JmxServerPOJO">
+		<result column="rec_id" property="recId" jdbcType="BIGINT"/>
+        <result column="app_id" property="appId" jdbcType="INTEGER"/>
+		<result column="host_id" property="hostId" jdbcType="INTEGER"/>
+		<result column="host_ip" property="hostIp" jdbcType="VARCHAR"/>
+        <result column="app_name" property="appName" jdbcType="VARCHAR"/>
+    </resultMap>
+	<sql id="Server_Column_List">
+		app_id,host_id,jmx_port,jmx_status,host_ip,data_source,add_time
+    </sql>
+	<sql id="ServerExtra_Column_List">
+		a.rec_id,a.app_id,a.host_id,b.job_name app_name,a.host_ip
+    </sql>
+	<select id="selectServersByAppId" resultMap="JmxServerResultMap"
+     parameterType="java.lang.Integer">
+        select
+        <include refid="Server_Column_List"/>
+		from jmx_server
+		where
+		<if test="appId!=-1">
+			app_id = #{appId,jdbcType=INTEGER} and
+		</if>
+		jmx_status=1
+    </select>
+    
+    <select id="selectServerByHostId" resultMap="JmxServerResultMap" parameterType="java.lang.Integer">
+        select
+            <include refid="Server_Column_List"/>
+        from jmx_server
+        where
+        host_id = #{hostId,jdbcType=INTEGER} and
+        jmx_status=1
+        limit 1
+    </select>
+
+	<select id="selectServersByAppIds" resultMap="JmxServerResultMap">
+        select
+        <include refid="Server_Column_List"/>
+		from jmx_server
+		where
+		<if test="appIds != null" >
+		 app_id in
+		 <foreach collection="appIds" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                   </foreach>
+	    </if>
+    </select>
+
+	<select id="selectDetailInfo" resultMap="JmxServerResultMap">
+        select
+        <include refid="Server_Column_List"/>
+		from jmx_server
+		where
+		host_id = #{hostid,jdbcType=INTEGER}
+		and app_id = #{appid,jdbcType=INTEGER}
+    </select>
+
+	<select id="selectServerExtraInfo" resultMap="JmxServerExtraMap">
+        select
+        <include refid="ServerExtra_Column_List"/>
+		from jmx_server a,jmx_task_schedule_job b
+		where
+		a.host_id = #{hostid,jdbcType=INTEGER}
+		and a.app_id = #{appid,jdbcType=INTEGER}
+		and a.app_id = b.app_id
+    </select>
+
+	<update id="updateServerMonitor">
+        update jmx_server
+        set jmx_status = #{jmxstatus,jdbcType=INTEGER}
+        where app_id = #{appid,jdbcType=INTEGER} and host_id = #{hostid,jdbcType=INTEGER}
+    </update>
+</mapper>

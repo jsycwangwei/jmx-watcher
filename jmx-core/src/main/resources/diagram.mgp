@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PackageAnalysis>
+    <Package name="com.focustech.jmx.client" x="883" y="166"/>
+    <Package name="com.focustech.jmx.connections" x="376" y="565"/>
+    <Package name="com.focustech.jmx.examples" x="879" y="61">
+        <DependencyLink destination="com.focustech.jmx.client"/>
+        <DependencyLink destination="com.focustech.jmx.guice"/>
+        <DependencyLink destination="com.focustech.jmx.util"/>
+        <DependencyLink destination="com.focustech.jmx.model"/>
+    </Package>
+    <Package name="com.focustech.jmx.exceptions" x="880" y="279"/>
+    <Package name="com.focustech.jmx.guice" x="49" y="320">
+        <DependencyLink destination="com.focustech.jmx.client"/>
+        <DependencyLink destination="com.focustech.jmx.connections"/>
+        <DependencyLink destination="com.focustech.jmx.monitor"/>
+    </Package>
+    <Package name="com.focustech.jmx.jobs" x="397" y="698">
+        <DependencyLink destination="com.focustech.jmx.connections"/>
+        <DependencyLink destination="com.focustech.jmx.util"/>
+        <DependencyLink destination="com.focustech.jmx.model"/>
+    </Package>
+    <Package name="com.focustech.jmx.model" x="45" y="51">
+        <DependencyLink destination="com.focustech.jmx.exceptions"/>
+    </Package>
+    <Package name="com.focustech.jmx.monitor" x="391" y="845">
+        <DependencyLink destination="com.focustech.jmx.exceptions"/>
+    </Package>
+    <Package name="com.focustech.jmx.server.http" x="888" y="465"/>
+    <Package name="com.focustech.jmx.threaddump" x="27" y="489">
+        <DependencyLink destination="com.focustech.jmx.model"/>
+    </Package>
+    <Package name="com.focustech.jmx.util" x="47" y="182">
+        <DependencyLink destination="com.focustech.jmx.model"/>
+    </Package>
+</PackageAnalysis>

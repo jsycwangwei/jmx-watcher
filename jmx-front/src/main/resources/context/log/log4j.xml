@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
+
+	<appender name="interface_sync" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="${jmx.log.dir}/interface.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="${jmx.log.encoding}" />
+		<param name="maxFileSize" value="10mb" />
+		<param name="maxBackupIndex" value="10" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss SSS} [%t] %-5p %c - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="jobs_sync" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="${jmx.log.dir}/jobs.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="${jmx.log.encoding}" />
+		<param name="maxFileSize" value="10mb" />
+		<param name="maxBackupIndex" value="10" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss SSS} [%t] %-5p %c - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="service_sync" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="${jmx.log.dir}/service.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="${jmx.log.encoding}" />
+		<param name="maxFileSize" value="10mb" />
+		<param name="maxBackupIndex" value="10" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss SSS} [%t] %-5p %c - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="dump_sync" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="${jmx.log.dir}/jmxwatch_dump.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="${jmx.log.encoding}" />
+		<param name="maxFileSize" value="10mb" />
+		<param name="maxBackupIndex" value="10" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d [%t] %p %c [18] %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="controller_sync" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="${jmx.log.dir}/controller.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="${jmx.log.encoding}" />
+		<param name="maxFileSize" value="10mb" />
+		<param name="maxBackupIndex" value="10" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss SSS} [%t] %-5p %c - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="interface_asyn" class="org.apache.log4j.AsyncAppender">
+			<param name="BufferSize" value="512"/>
+			<appender-ref ref="interface_sync" />
+	</appender>
+	<appender name="jobs_asyn" class="org.apache.log4j.AsyncAppender">
+			<param name="BufferSize" value="512"/>
+			<appender-ref ref="jobs_sync" />
+	</appender>
+	<appender name="service_asyn" class="org.apache.log4j.AsyncAppender">
+			<param name="BufferSize" value="512"/>
+			<appender-ref ref="service_sync" />
+	</appender>
+	<appender name="dump_sync" class="org.apache.log4j.AsyncAppender">
+			<param name="BufferSize" value="512"/>
+			<appender-ref ref="dump_sync" />
+	</appender>
+	<appender name="controller_asyn" class="org.apache.log4j.AsyncAppender">
+			<param name="BufferSize" value="512"/>
+			<appender-ref ref="controller_sync" />
+	</appender>
+
+	<root>
+		<level value="error" />
+		<appender-ref ref="interface_asyn" />
+	</root>
+
+	<logger name="INTERFACE" additivity="false">
+		<level value="ERROR" />
+		<appender-ref ref="interface_sync" />
+	</logger>
+	<logger name="service" additivity="false">
+		<level value="ERROR" />
+		<appender-ref ref="service_sync" />
+	</logger>
+	<logger name="dump" additivity="false">
+		<level value="ERROR" />
+		<appender-ref ref="dump_sync" />
+	</logger>
+	<logger name="jobs" additivity="false">
+		<level value="ERROR" />
+		<appender-ref ref="jobs_sync" />
+	</logger>
+	<logger name="controller" additivity="false">
+		<level value="ERROR" />
+		<appender-ref ref="controller_sync" />
+	</logger>
+
+<!--  查看myBatis形成的SQL 调试时使用
+    <appender name="console" class="org.apache.log4j.ConsoleAppender">
+        <param name="Target" value="System.out" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d [%t] %p %c [07] %m%n" />
+        </layout>
+    </appender>
+
+   	<logger name="com.ibatis" additivity="true">
+		<level value="DEBUG" ></level>
+		<appender-ref ref="console" ></appender-ref>
+	</logger>
+	<logger name="java.sql.Connection" additivity="true">
+		<level value="DEBUG" ></level>
+		<appender-ref ref="console" ></appender-ref>
+	</logger>
+	<logger name="java.sql.Statement">
+		<level value="DEBUG" ></level>
+		<appender-ref ref="console" ></appender-ref>
+	</logger>
+	<logger name="java.sql.PreparedStatement">
+		<level value="DEBUG" ></level>
+		<appender-ref ref="console" ></appender-ref>
+	</logger>
+	<logger name="java.sql.ResultSet">
+		<level value="DEBUG" ></level>
+		<appender-ref ref="console" ></appender-ref>
+	</logger>
+-->
+</log4j:configuration>

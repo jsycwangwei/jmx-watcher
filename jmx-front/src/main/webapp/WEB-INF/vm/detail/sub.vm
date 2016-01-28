@@ -1,0 +1,125 @@
+   <div class="page-content">
+	#parse("common/detail/detail_head.vm")
+	
+	<div class="container-fluid">
+		<div class="server-search row">
+       <div class="server-search">
+		<form action="/jmx/detail/sub.html" method="get">
+                <ul>
+                    <li>
+    					<label for="objName">选择MBean：
+                        </label><select id="objName" name="objName">
+							<option value="">
+								* MBean *
+                            </option>
+                            
+                            #foreach($!obj in $!objNames)
+                            	<option value="$!obj" #if($!{objName}==$!obj)selected #end>
+            						$!obj
+                            	</option>
+                            #end
+                            
+                        </select>
+    				</li>
+    			    <li>
+    					<label for="startdate">
+        					选择开始时间：
+                        </label>
+        				<input id="startdate" name="startdate" type="text" class="timepicker" value="$!{start}" style="border-radius:4px">
+                        </input>
+    				</li>
+					<li>
+            			<label for="enddate">
+        					选择结束时间：
+                        </label>
+        				<input id="enddate" name="enddate" type="text" class="timepicker" value="$!{end}" style="border-radius:4px">
+                        </input>
+
+    				</li>
+    				<li>
+    					<div>
+							<input  name="server" type="text" value="$!serverObj.hostId" style="display:none"/>
+							<input  name="app" type="text" value="$!serverObj.appId" style="display:none"/>
+    						<input  id="queryAppBtn" type="submit" class="btn btn-info" value="查询"/>
+                        </div>
+    				</li>
+    			</ul>
+          </form>
+	   </div>
+
+        </div>
+
+
+	<div id="example1"></div>
+	<input type="hidden" id="subArray" name="subArray" value="$!subArray"/>
+		
+			</div>
+        </div>
+	</div>
+    </div>
+	<script type="text/x-handlebars-template" id="dump-widget-template">
+        <h3>Dump信息</h3>
+		<div id="dump-widget-chart"></div>
+	</script>
+	<script type="text/javascript" src="/resources/js/jquery/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="/resources/js/date.js"></script>
+	<script type="text/javascript" src="/resources/js/bootstrap/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/resources/js/jquery/jquery-ui-1.9.2-min.js"></script>
+	<script type="text/javascript" src="/resources/js/jquery/jquery.simple-dtpicker.js"></script>
+    <script type="text/javascript" src="/resources/js/hightchart/highcharts.js"></script>
+	<script type="text/javascript" src="/resources/js/bootstrap/select2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/plugins/jquery.columns.min.js"></script>
+	<script type="text/javascript" src="/resources/js/plugins/ajaxpaging.js"></script>
+	<script type="text/javascript" src="/resources/js/plugins/gotopage.js"></script>
+	<script type="text/javascript">
+
+</script>
+	<script>
+$(function () {
+	var data0 = $('#subArray').val();
+	var columns1 = $('#example1').columns({
+        data: 
+          eval('['+data0+']')
+    });
+	
+	
+	
+    var serverid = $("input[name=server]").val();
+	var appid = $("input[name=app]").val();
+	var xcategory = new Array();
+	var values = new Array();
+    $("#objName").select2({allowClear:true,width:150});
+    
+    var list = '$!subArray';
+    
+	$.ajax({
+			url:'/api/detail/main/dumpcount',
+			dataType:'json',
+			type:"POST",
+			aysn:false,
+			data:{server:serverid,app:appid},
+            complete:function(data,status){
+			  if(status=='success'){
+			     $.each(eval("("+data.responseText+")"),function(index,obj){
+				 xcategory.push(obj[0]);
+				 values.push(obj[1]);
+
+				 })
+				 var dumpchart=chart.highcharts();
+				 dumpchart.series[0].update(
+            		{
+                        data: values
+                    }
+            	);
+			  }
+			}
+			});
+
+			  $(".timepicker").appendDtpicker({
+	             "autodateOnStart": false
+              });
+
+});
+
+
+    </script>

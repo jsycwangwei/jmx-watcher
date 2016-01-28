@@ -1,0 +1,74 @@
+   <div class="page-content">
+	#parse("common/detail/detail_head.vm")
+	<div class="page-detail">
+		<div style="height:40px">
+			<div style="float:right">
+                <label for="select"> 请选择类型：&nbsp;
+                </label><select id="select">
+        			<option limit="$!activecount" value="cpuusage">
+        				cpuUsage
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div id="detail-cpu-widget-placeholder">
+
+        </div>
+		<div id="detail-cpuinfo-widget-placeholder">
+
+        </div>
+	</div>
+   </div>
+	<script type="text/x-handlebars-template" id="detail-cpu-widget-template">
+	         <div class="well chart-box">
+
+        		<div id="detail-cpu-widget-chart" ></div>
+				<div class="time-btn-group">
+                   {{> date-dropdown}}
+                </div>
+             </div>
+	</script>
+	<script type="text/x-handlebars-template" id="detail-cpuinfo-widget-template">
+	          <div class="info-block">
+            <h4>最近一次CPU基本信息</h4>
+			<ul class="list-group">
+				    {{#hash this}}
+                     <li class="list-group-item">{{key}}:{{value}} </li>
+					{{/hash}}
+            </ul>
+        </div>
+	</script>
+	#parse("template/date_dropdown_template.vm")
+	<script type="text/javascript" src="/resources/js/jquery/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="/resources/js/date.js"></script>
+	<script type="text/javascript" src="/resources/js/bootstrap/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/resources/js/bootstrap/select2.min.js"></script>
+    <script type="text/javascript" src="/resources/js/hightchart/highcharts.js"></script>
+	<script type="text/javascript" src="/resources/js/handlebars/handlebars-v3.0.0.js"></script>
+	<script type="text/javascript" src="/resources/js/underscore/underscore-min.js"></script>
+	<script type="text/javascript" src="/resources/js/backbone/backbone-min.js"></script>
+
+	<script type="text/javascript" src="/resources/js/views/base-widget-view.js"></script>
+	<script type="text/javascript" src="/resources/js/views/base-info-widget-view.js"></script>
+	<script type="text/javascript" src="/resources/js/models/detail-widget-model.js"></script>
+	<script type="text/javascript" src="/resources/js/views/base-warningline-widget-view.js"></script>
+    <script type="text/javascript" src="/resources/js/views/cpu-widget-view.js"></script>
+    <script type="text/javascript" src="/resources/js/app/handlerbar-helper.js"></script>
+	<script type="text/javascript" src="/resources/js/app/detail-app.js"></script>
+	<script>
+	$(document).ready(function(e){
+    $("#select").select2({allowClear:true,width:150});
+	$(document).on("typeChange",function(){
+    	var type = $("#select").val();
+    	DetailCPUApp.init(type);
+	});
+    $(document).find('#select').trigger("typeChange");
+	$("#select").on("change",function(){
+	    var type = $("#select").val();
+		DetailCPUApp.changeWidget(type);
+	});
+
+
+
+});
+    </script>

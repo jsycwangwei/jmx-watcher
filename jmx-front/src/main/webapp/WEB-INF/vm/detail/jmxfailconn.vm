@@ -1,0 +1,101 @@
+   <div class="page-content">
+	#parse("common/detail/detail_head.vm")
+
+	<div class="container-fluid">
+        <div id="container">
+
+        </div>
+		<hr/>
+       <div class="server-search">
+		   <ul>
+                <li>
+    				<label for="startdate">
+    					选择开始时间：
+                    </label>
+    				<input id="startdate" name="startdate" type="text" class="timepicker" value="$!{start}" style="border-radius:4px">
+                    </input>
+    			</li>
+    			<li>
+        			<label for="enddate">
+    					选择结束时间：
+                    </label>
+    				<input id="enddate" name="enddate" type="text" class="timepicker" value="$!{end}" style="border-radius:4px">
+                    </input>
+
+    			</li>
+				<li>
+					<div class="btn-group">
+						<button id="queryAppBtn" type="button" class="btn btn-info">
+							查询
+                        </button>
+                    </div>
+    			</li>
+    		</ul>
+	   </div>
+
+		<div id="detail-connfail-widget-placeholder" style="margin-top:20px;margin-left:10px;margin-right:10px">
+
+        </div>
+	</div>
+    </div>
+	<script type="text/x-handlebars-template" id="detail-connfail-widget-template">
+        <table class="table table-bordered table-striped table-hover">
+            				<thead>
+                				<tr>
+                					<th style="width:60%">失败原因</th>
+                					<th>发生时间</th>
+
+                				</tr>
+                    		</thead>
+							<tbody>
+							    {{#each serverfail}}
+                                <tr>
+                					<td>{{fullreason}}</td>
+									<td>{{addtime}}</td>
+                                </tr>
+								{{/each}}
+                            </tbody>
+                         </table>
+						 <div id="connfail-pagination" style="float:right"><!--分页-->
+
+                        </div>
+	</script>
+	<script type="text/javascript" src="/resources/js/jquery/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="/resources/js/bootstrap/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/resources/js/jquery/jquery-ui-1.9.2-min.js"></script>
+	<script type="text/javascript" src="/resources/js/jquery/jquery.simple-dtpicker.js"></script>
+	<script type="text/javascript" src="/resources/js/bootstrap/bootstrap-paginator.js"></script>
+	<script type="text/javascript" src="/resources/js/handlebars/handlebars-v3.0.0.js"></script>
+	<script type="text/javascript" src="/resources/js/underscore/underscore-min.js"></script>
+	<script type="text/javascript" src="/resources/js/backbone/backbone-min.js"></script>
+	<script type="text/javascript" src="/resources/js/views/base-nofresh-widget-view.js"></script>
+	<script type="text/javascript" src="/resources/js/models/detail-widget-model.js"></script>
+	<script type="text/javascript" src="/resources/js/views/detail-failconn-widget-view.js"></script>
+	<script type="text/javascript" src="/resources/js/app/detail-app.js"></script>
+	<script type="text/javascript">
+
+</script>
+	<script>
+$(function () {
+
+			  $(".timepicker").appendDtpicker({
+	             "autodateOnStart": false
+              });
+
+			  DetailFailConnApp.init();
+
+
+	$("#queryAppBtn").on('click',function(){
+        var host = $("input[name=server]").val();
+    	var app = $("input[name=app]").val();
+		var start = $("#startdate").val();
+		var end = $("#enddate").val();
+    	var currentPage = 1;
+		var params = {server:host,app:app,currentpage:currentPage,from:start,to:end};
+        DetailFailConnApp.detailFailConnWidget.LoadModel(params);
+	 });
+
+});
+
+
+    </script>

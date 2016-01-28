@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ClassDiagram>
+    <Class name="com.focustech.jmx.model.PropertyResolver" x="1511" y="502">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="com.focustech.jmx.model.PropertyResolver.PropertyResolverFunc"
+            endpointName="RESOLVE_PROPERTIES" kind="Simple"/>
+        <Association
+            destinationClassName="com.focustech.jmx.model.PropertyResolver.ObjectPropertyResolverFunc"
+            endpointName="RESOLVE_OBJECT_PROPERTIES" kind="Simple"/>
+    </Class>
+    <Class name="com.focustech.jmx.model.Server.Builder" x="-9" y="242">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="com.focustech.jmx.model.Query"
+            endpointName="queries" kind="Simple"/>
+    </Class>
+    <Class name="com.focustech.jmx.model.Result" x="50" y="688">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="com.focustech.jmx.ProcessServerThread" x="227" y="-169">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="com.focustech.jmx.model.Server"
+            endpointName="server" kind="Simple"/>
+    </Class>
+    <Class name="com.focustech.jmx.model.output.Log4JWriter" x="379" y="594">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Extension destinationClassName="com.focustech.jmx.model.output.BaseOutputWriter"/>
+        <Communication destinationClassName="com.focustech.jmx.model.Result"/>
+        <Communication destinationClassName="com.focustech.jmx.model.Server"/>
+        <Communication destinationClassName="com.focustech.jmx.model.output.BaseOutputWriter"/>
+    </Class>
+    <Class name="com.focustech.jmx.JmxResultProcessor" x="394" y="191">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="com.focustech.jmx.model.Query"
+            endpointName="query" kind="Simple"/>
+        <Communication destinationClassName="com.focustech.jmx.model.Query"/>
+    </Class>
+    <Class name="com.focustech.jmx.model.Server" x="96" y="-498">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Communication destinationClassName="com.focustech.jmx.model.PropertyResolver"/>
+        <Communication destinationClassName="com.focustech.jmx.model.Server.Builder"/>
+    </Class>
+    <Class name="com.focustech.jmx.guice.GuiceJobFactory" x="624" y="803">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="com.focustech.jmx.model.output.BaseOutputWriter"
+        x="560" y="381">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Extension destinationClassName="com.focustech.jmx.model.OutputWriter"/>
+        <Communication destinationClassName="com.focustech.jmx.model.PropertyResolver"/>
+        <Communication destinationClassName="com.focustech.jmx.model.Result"/>
+    </Class>
+    <Class name="com.focustech.jmx.JmxTransformer.ShutdownHook" x="1580" y="-333">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Communication destinationClassName="com.focustech.jmx.JmxTransformer"/>
+    </Class>
+    <Class name="com.focustech.jmx.JmxTransformer" x="1038" y="-347">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="com.focustech.jmx.model.Server"
+            endpointName="masterServersList" kind="Simple"/>
+        <Communication destinationClassName="com.focustech.jmx.model.JmxProcess"/>
+        <Communication destinationClassName="com.focustech.jmx.model.Server"/>
+        <Communication destinationClassName="com.focustech.jmx.model.OutputWriter"/>
+        <Communication destinationClassName="com.focustech.jmx.model.Query"/>
+    </Class>
+    <Class name="com.focustech.jmx.connections.SocketFactory" x="2146" y="329">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="com.focustech.jmx.model.OutputWriter" x="666" y="262">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="com.focustech.jmx.threaddump.FullThreadDump" x="465" y="-544">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="com.focustech.jmx.model.Server"
+            endpointName="server" kind="Simple"/>
+        <Communication destinationClassName="com.focustech.jmx.model.Server"/>
+        <Communication destinationClassName="com.focustech.jmx.threaddump.ThreadMonitor"/>
+    </Class>
+    <Class
+        name="com.focustech.jmx.monitor.ManagedGenericKeyedObjectPoolMBean"
+        x="847" y="-64">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class
+        name="com.focustech.jmx.model.PropertyResolver.ObjectPropertyResolverFunc"
+        x="1241" y="419">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Communication destinationClassName="com.focustech.jmx.model.PropertyResolver"/>
+    </Class>
+    <Class
+        name="com.focustech.jmx.model.PropertyResolver.PropertyResolverFunc"
+        x="1246" y="555">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Communication destinationClassName="com.focustech.jmx.model.PropertyResolver"/>
+    </Class>
+    <Class
+        name="com.focustech.jmx.monitor.ManagedJmxTransformerProcessMXBean"
+        x="1183" y="-61">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="com.focustech.jmx.model.Query.Builder" x="187" y="299">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="com.focustech.jmx.model.OutputWriter"
+            endpointName="outputWriters" kind="Simple"/>
+    </Class>
+    <Class name="com.focustech.jmx.monitor.ManagedObject" x="679" y="-69">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="com.focustech.jmx.connections.JmxConnectionFactory"
+        x="2145" y="180">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="com.focustech.jmx.threaddump.ThreadMonitor" x="713" y="-552">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="com.focustech.jmx.ManagedJmxTransformerProcess"
+        x="1002" y="102">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Extension destinationClassName="com.focustech.jmx.monitor.ManagedJmxTransformerProcessMXBean"/>
+        <Extension destinationClassName="com.focustech.jmx.monitor.ManagedObject"/>
+        <Association
+            destinationClassName="com.focustech.jmx.JmxTransformer"
+            endpointName="proc" kind="Simple"/>
+        <Communication destinationClassName="com.focustech.jmx.JmxTransformer"/>
+    </Class>
+    <Class name="com.focustech.jmx.model.Query" x="63" y="-24">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Communication destinationClassName="com.focustech.jmx.model.PropertyResolver"/>
+        <Communication destinationClassName="com.focustech.jmx.model.Query.Builder"/>
+    </Class>
+    <Class name="com.focustech.jmx.jobs.ServerJob" x="1067" y="933">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Communication destinationClassName="com.focustech.jmx.model.Server"/>
+    </Class>
+    <Class name="com.focustech.jmx.guice.JmxTransModule" x="767" y="942">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class
+        name="com.focustech.jmx.model.output.BaseOutputWriter.ResultValuesTransformer"
+        x="41" y="877">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Communication destinationClassName="com.focustech.jmx.model.Result"/>
+    </Class>
+    <Class name="com.focustech.jmx.model.output.StdOutWriter" x="801" y="597">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Extension destinationClassName="com.focustech.jmx.model.output.BaseOutputWriter"/>
+    </Class>
+    <Class name="com.focustech.jmx.model.JmxProcess" x="-7" y="-165">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="com.focustech.jmx.model.Server"
+            endpointName="servers" kind="Simple"/>
+    </Class>
+    <Class name="com.focustech.jmx.JmxQueryProcessor" x="919" y="803">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Communication destinationClassName="com.focustech.jmx.model.OutputWriter"/>
+        <Communication destinationClassName="com.focustech.jmx.JmxResultProcessor"/>
+        <Communication destinationClassName="com.focustech.jmx.model.Query"/>
+    </Class>
+    <Class
+        name="com.focustech.jmx.monitor.ManagedGenericKeyedObjectPool"
+        x="657" y="131">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Extension destinationClassName="com.focustech.jmx.monitor.ManagedObject"/>
+        <Extension destinationClassName="com.focustech.jmx.monitor.ManagedGenericKeyedObjectPoolMBean"/>
+    </Class>
+    <Class name="com.focustech.jmx.ProcessQueryThread" x="414" y="-175">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="com.focustech.jmx.model.Query"
+            endpointName="query" kind="Simple"/>
+        <Association
+            destinationClassName="com.focustech.jmx.model.Server"
+            endpointName="server" kind="Simple"/>
+        <Communication destinationClassName="com.focustech.jmx.JmxQueryProcessor"/>
+    </Class>
+</ClassDiagram>

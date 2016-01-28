@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+<mapper namespace="com.focustech.jmx.DAO.JmxNormalDAO">
+
+<resultMap id="NormalResultMap" type="com.focustech.jmx.po.JmxNormal">
+   <id column="rec_id" property="recId" jdbcType="INTEGER"/>
+   <result column="app_id" property="appId" jdbcType="INTEGER"/>
+   <result column="host_id" property="hostId" jdbcType="INTEGER"/>
+   <result column="obj_name" property="objName" jdbcType="VARCHAR"/>
+   <result column="add_time" property="addTime" jdbcType="TIMESTAMP"/>
+   <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+   <result column="normal_val" property="normalVal" jdbcType="VARCHAR"/>
+</resultMap>
+
+   <select id="insertNormal" parameterType="JmxNormal">
+   		insert into jmx_normal
+   		(app_id,host_id,obj_name,add_time,normal_val)  
+   		values
+   		(#{appId},#{hostId},#{objName},#{addTime},#{normalVal})
+   </select>
+   
+   <select id="selectNormalInfo" resultMap="NormalResultMap">
+   		select 
+   		add_time,normal_val
+   		from jmx_normal
+   		where 
+   		host_id=#{hostId}
+   		<if test="objName !=null and objName !=''">
+   			and obj_name=#{objName}
+   		</if>
+   		<if test="from !=null and to !=''">
+   			between #{from,jdbcType=TIMESTAMP} and #{to,jdbcType=TIMESTAMP}
+   		</if>
+   		order by add_time desc
+   		limit #{size}
+   </select>
+   
+   <select id="selectObjsByhostId" resultType="String">
+   		select
+   		distinct obj_name
+   		from jmx_normal
+   		where host_id=#{hostId}
+   </select>
+	  
+</mapper>

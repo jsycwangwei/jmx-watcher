@@ -1,0 +1,53 @@
+<div class="sider-left">
+		<ul class="left-menu">
+			<li>
+				<a href="#monitor" class="collapsed" data-toggle="collapse">
+					<i class="fa-desktop"></i>
+				    <span class="title">Monitor</span>
+					<span class="fa-chevron-right" style="float:right"></span>
+					</a>
+					<ul id="monitor" class="sub-menu collapse in">
+						<li >
+							<a href="/jmx/overview.html">
+							<i class="fa-eye"></i>
+							<span class="title">OverView</span></a>
+						</li>
+						<li >
+							<a href="/jmx/serverlist.html">
+							<i class="fa-laptop"></i>
+							<span class="title">ServerList</span>
+							</a>
+						</li>
+					</ul>
+
+		    </li>
+			<li>
+			    <a href="#setting" class="collapsed" data-toggle="collapse">
+				<i class="fa-cogs"></i>
+				   <span class="title">Settings</span>
+					<span class="fa-chevron-right" style="float:right"></span>
+				</a>
+				<ul id="setting" class="sub-menu collapse in">
+						<li >
+							<a href="/jmx/jobSetting.html">
+							<i class="fa-cog"></i>
+							<span class="title">Job</span></a>
+						</li>
+						<li >
+							<a href="/jmx/appSetting.html">
+							<i class="fa-cog"></i>
+							<span class="title">App</span>
+							</a>
+						</li>
+						<li >
+							<a href="/jmx/serverSetting.html">
+							<i class="fa-cog"></i>
+							<span class="title">Server</span>
+							</a>
+						</li>
+				 </ul>
+
+
+            </li>
+		</ul>
+	</div>

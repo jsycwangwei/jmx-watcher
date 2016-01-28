@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+<mapper namespace="com.focustech.jmx.DAO.JmxParameterDAO">
+<resultMap id="ParamResultMap" type="com.focustech.jmx.po.JmxParameter">
+        <id column="rec_id" property="recId" jdbcType="BIGINT"/>
+        <result column="app_id" property="appId" jdbcType="INTEGER"/>
+        <result column="param_type" property="paramType" jdbcType="VARCHAR"/>
+		<result column="param_name" property="paramName" jdbcType="VARCHAR"/>
+		<result column="param_key" property="paramKey" jdbcType="VARCHAR"/>
+		<result column="param_value" property="paramValue" jdbcType="VARCHAR"/>
+		<result column="param_value_order" property="paramValueOrder" jdbcType="INTEGER"/>
+		<result column="param_desc" property="paramDesc" jdbcType="VARCHAR"/>
+    </resultMap>
+
+	<sql id="Param_Column_List">
+		rec_id,app_id,param_type,param_name,
+		param_key,param_value,param_value_order
+    </sql>
+	<sql id="param_condition">
+	<if test="appId !=null">
+			and app_Id = #{appId,jdbcType=INTEGER}
+	</if>
+	<if test="paramType !=null">
+			and param_type = #{paramType,jdbcType=VARCHAR}
+	</if>
+	<if test="paramkey !=null">
+		    and param_key=#{paramkey,jdbcType=VARCHAR}
+	</if>
+	<if test="paramname !=null">
+		    and param_name=#{paramname,jdbcType=VARCHAR}
+	</if>
+</sql>
+
+   <select id="selectParamtersByAppid" resultMap="ParamResultMap">
+   	    select  #{appId} app_id,'threshold' param_type,c.* from (
+		select b.param_type,b.param_name,b.param_key,a.param_value,b.param_desc
+		from jmx_parameter b left join (select <include refid="Param_Column_List"/> from jmx_parameter where app_id =#{appId}) a
+		on a.param_type = b.param_type and a.param_name = b.param_name
+		and a.param_key = b.param_key
+		where b.param_type = 'threshold' and b.app_id = -1
+		 order by b.param_value_order) c
+	</select>
+	   <select id="selectParamtersByType" resultMap="ParamResultMap">
+		select <include refid="Param_Column_List"/>
+		from jmx_parameter where app_id =#{appId} and param_type = #{paramType}
+		order by param_value_order
+	</select>
+
+<select id="getThreadThreshold" resultType="java.lang.String">
+	SELECT param_value FROM jmx_parameter WHERE param_type='threshold' AND param_name='thread' AND param_key=#{key} AND app_id=#{appId}
+</select>
+
+<select id="getCpuUsageThreshold" resultType="java.lang.String">
+	SELECT param_value FROM jmx_parameter WHERE param_type='threshold' AND param_name='cpu' AND param_key=#{key} AND app_id=#{appId}
+</select>
+
+<select id="getDumpFileDir" resultType="java.lang.String">
+	SELECT param_value FROM jmx_parameter a WHERE a.param_key='dump_file_dir'
+</select>
+
+<insert id="insertParam">
+	insert into jmx_parameter(app_id,param_type,param_name,param_key,param_value)
+	values(#{appid},#{paramtype},#{paramname},#{paramkey},#{paramvalue})
+</insert>
+
+<update id="updateParamValueByKey">
+	update jmx_parameter set param_value = #{paramvalue} where app_id = #{appid} and
+	param_type = #{paramtype} and param_name = #{paramname} and param_key = #{paramkey}
+
+</update>
+
+<select id="getParamCount" resultType="java.lang.Integer">
+	SELECT count(1) FROM jmx_parameter WHERE app_id = #{appid} and
+	param_type = #{paramtype} and param_name = #{paramname} and param_key = #{paramkey}
+</select>
+
+<select id="selectKeysByName" resultType="java.lang.String">
+	select distinct param_key from jmx_parameter
+	where
+	app_id=-1
+	and param_type=#{type}
+	and param_name=#{name}
+</select>
+
+<select id="selectParamter" resultMap="ParamResultMap">
+	SELECT <include refid="Param_Column_List"/>
+	FROM jmx_parameter WHERE 1=1
+	<include refid="param_condition"/>
+	limit 0,1
+</select>
+
+<select id="getParamtersByTypeAndName" resultMap="ParamResultMap">
+  SELECT param_key, param_value
+  FROM jmx_parameter
+  WHERE param_type=#{paramType}
+  AND param_name=#{paramName}
+  AND app_id=#{appId}
+  order by param_value_order
+</select>
+</mapper>

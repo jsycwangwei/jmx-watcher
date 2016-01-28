@@ -1,0 +1,28 @@
+#if($!common)
+$screen_content
+#else
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/resources/css/jwatcher.css">
+<link rel="stylesheet" type="text/css" href="/resources/css/font-awesome.css">
+<link rel="stylesheet" type="text/css" href="/resources/css/select2.css">
+<link rel="stylesheet" type="text/css" href="/resources/css/jquery.simple-dtpicker.css">
+
+<link id="style" type="text/css" href="/resources/css/classic.css" rel="stylesheet" media="screen">
+<link id="style" type="text/css" href="/resources/css/screen.css" rel="stylesheet" media="screen">
+<title>
+	jmxWatcher
+</title>
+</head>
+<body>
+#parse("common/common_head.vm")
+#parse("common/common_leftmenu.vm")
+$screen_content
+</body>
+</html>
+#end
+
+

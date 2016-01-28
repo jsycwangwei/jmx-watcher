@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+<mapper namespace="com.focustech.jmx.DAO.JmxModelDAO">
+
+<resultMap id="ModelResultMap" type="com.focustech.jmx.po.JmxModel">
+   <id column="rec_id" property="recId" jdbcType="INTEGER"/>
+   <result column="app_id" property="appId" jdbcType="INTEGER"/>
+</resultMap>
+
+   <select id="selectSampIdsByAppId" resultType="INTEGER" parameterType="INTEGER">
+   		select sample_id from jmx_model where app_id = #{appId}   
+   </select>
+	  
+</mapper>
