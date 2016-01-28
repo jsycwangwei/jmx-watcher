@@ -1,0 +1,75 @@
+			<div class="sidebar">
+				<div class="menu">
+					<ul>
+						<li><strong> <a href="javascript:;"><i
+									class="iconfont icon"></i>监控</a>
+						</strong>
+							<ul>
+								<li><a class=""
+									href="https://ai.oneapm.com/tpm/account/723/applications/792/overview">
+										总览 </a></li>
+								<li><a class=""
+									href="https://ai.oneapm.com/tpm/account/723/applications/792/map">
+										拓扑 </a></li>
+								<li><a class=""
+									href="https://ai.oneapm.com/tpm/account/723/applications/792/transactions">
+										Web事务 </a></li>
+								<li><a class=""
+									href="https://ai.oneapm.com/tpm/account/723/applications/792/database">
+										数据库 </a></li>
+								<li><a class=""
+									href="https://ai.oneapm.com/tpm/account/723/applications/792/extservice">
+										外部服务 </a></li>
+								<li><a class=""
+									href="https://ai.oneapm.com/tpm/account/723/applications/792/othertransactions">
+										后台任务 </a></li>
+								<li><a class="active"
+									href="https://ai.oneapm.com/tpm/account/723/applications/792/jvm">
+										JVMs </a></li>
+							</ul></li>
+						<li><strong><a href="javascript:;"><i
+									class="iconfont icon"></i> 事件</a> </strong>
+							<ul>
+								<li><a class=""
+									href="https://ai.oneapm.com/tpm/account/723/applications/792/errorinfo">
+										错误信息 </a></li>
+							</ul></li>
+						<li><strong><a href="javascript:;"><i
+									class="iconfont icon"></i> 报表</a> </strong>
+							<ul>
+								<li><a class=""
+									href="https://ai.oneapm.com/tpm/account/723/applications/792/transactionreport">
+										Web事务 </a></li>
+								<li><a class=""
+									href="https://ai.oneapm.com/tpm/account/723/applications/792/databasereport">
+										数据库 </a></li>
+								<li><a class=""
+									href="https://ai.oneapm.com/tpm/account/723/applications/792/jvmreport">
+										JVM </a></li>
+							</ul></li>
+						<li><strong><a href="javascript:;"><i
+									class="iconfont icon"></i> 设置</a> </strong>
+							<ul>
+								<li><a class=""
+									href="https://ai.oneapm.com/tpm/account/723/applications/792/environment">
+										服务器环境 </a></li>
+								<li><a class=""
+									href="https://ai.oneapm.com/tpm/account/723/applications/792/setting">
+										应用设置 </a></li>
+								<li><a class=""
+									href="https://ai.oneapm.com/tpm/account/723/applications/792/btm/config">
+										自定义事务 </a></li>
+							</ul></li>
+						<li><strong> <a
+								href="https://ai.oneapm.com/tpm/account/723/keytransactions">
+									<i class="iconfont icon-side"></i> 关键事务
+							</a>
+						</strong></li>
+						<li><strong> <a
+								href="https://ai.oneapm.com/tpm/account/723/alerts/policyApp">
+									<i class="iconfont icon-side"></i> 报警设置
+							</a>
+						</strong></li>
+					</ul>
+				</div>
+			</div>

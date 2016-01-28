@@ -22,7 +22,7 @@ public class CommonController {
         model.addAttribute("common", "common");
         if (StringUtils.equals(name, this.name) && StringUtils.equals(pwd, this.password)) {
             request.getSession().setAttribute(SIGN, true);
-            return "redirect:/jmx/overview.html";
+            return "redirect:/index.html";
         }
         return "/new/login";
     }

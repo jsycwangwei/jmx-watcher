@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)https://ai.oneapm.com/tpm/account/723/applications#/ -->
+<html class="no-js">
+<!--<![endif]-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>JMX监控</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="description" content="">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1.5">
+<!-- 国产双核浏览器用 start -->
+<meta name="renderer" content="webkit">
+<!-- 国产双核浏览器用 end -->
+<link rel="stylesheet" type="text/css" href="resources/css/new/style-c28ecc68.css">
+</head>
+<body>
+	<div id="layout">
+		<div class="header">
+			<div class="logo">
+				<a href="#" title="JMX监控">
+					<img src="resources/image/logo.png"/>
+					<span>JMX监控</span>
+				</a>
+			</div>
+			<div class="account">
+				<strong class="account-info"> <i class="iconfont large"></i>
+					<span> JMX监控</span> <i class="iconfont icon-arrowup"></i>
+				</strong>
+				<div class="dropdown-main" style="display: none;">
+					<ul>
+						<li><a href="https://user.oneapm.com/account/profile.do"
+							target="_blank"><i class="iconfont"></i> 个人中心</a></li>
+						<li><a href="https://user.oneapm.com/account/home.do"
+							target="_blank"><i class="iconfont"></i> 控制台</a></li>
+						<li><a href="https://user.oneapm.com/account/group.do"><i
+								class="iconfont"></i> 团队信息</a></li>
+						<li><a href="javascript:;"><i class="iconfont"></i> 切换团队</a>
+							<ul>
+								<li><a
+									href="https://user.oneapm.com/account/groupChange.do?groupId=723">OneAPM</a>
+								</li>
+							</ul></li>
+						<li><a href="http://club.oneapm.com/" target="_blank"><i
+								class="iconfont"></i>社区</a></li>
+						<li><a href="https://ai.oneapm.com/tpm/account/logout"><i
+								class="iconfont"></i> 退出</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="order">
+				<strong class="order-title"><i class="iconfont"></i><span>
+						工单</span><i class="iconfont icon-arrowup"></i></strong>
+				<div class="dropdown-main" style="display: none;">
+					<ul>
+						<li><a href="https://oneapm.kf5.com/request/new/"
+							target="_blank"><i class="iconfont"></i>新建工单</a></li>
+						<li><a href="https://oneapm.kf5.com/request/listview/"
+							target="_blank"><i class="iconfont"></i>工单记录</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="btn-sidebar">
+				<a class="iconfont" href="javascript:;"></a>
+			</div>
+			<div class="nav">
+				<div class="services">
+					<ul>
+						<li><a class="active"
+							href="https://ai.oneapm.com/tpm/account/723/applications"
+							data-tip="应用性能管理" data-place="bottom"> <i class="iconfont"></i>
+						</a></li>
+						<li><a class=""
+							href="https://rum.oneapm.com/tpm/account/723/beacon/applist"
+							data-tip="真实用户体验监控" data-place="bottom"> <i class="iconfont"></i>
+						</a></li>
+						<li><a class="" href="https://cloud.oneapm.com/"
+							data-tip="系统监控和中间件监控" data-place="bottom"> <i
+								class="iconfont"></i>
+						</a></li>
+						<li><a class=""
+							href="https://ct.oneapm.com/synthetic/monitor" data-tip="模拟业务监控"
+							data-place="bottom"> <i class="iconfont"></i>
+						</a></li>
+						<li><a class="" href="https://mi.oneapm.com/mobile/app"
+							data-tip="移动应用性能管理平台" data-place="bottom"> <i
+								class="iconfont"></i>
+						</a></li>
+						<li><a class=""
+							href="http://c.110monitor.com/console/alarm/index.jsp?JSESSIONID=db3eac85-38ee-4ff7-a8c4-7f7bb32c6e72"
+							data-tip="一站式告警管理平台" data-place="bottom"> <i class="iconfont"></i>
+						</a></li>
+						<li><a class=""
+							href="https://tpm.oneapm.com/tpm/account/723/servers"
+							data-tip="主机监控" data-place="bottom"> <i class="iconfont"></i>
+						</a></li>
+					</ul>
+				</div>
+				<div class="notice-tips">
+					<ul data-reactid=".2">
+						<li data-reactid=".2.$notice1" style="display: none;"><div
+								class="notice" data-reactid=".2.$notice1.0">
+								<a class="iconfont close" href="javascript:;"
+									data-reactid=".2.$notice1.0.0"></a><i
+									class="iconfont icon-info" data-reactid=".2.$notice1.0.1"></i>
+								<div class="notice-inner" data-reactid=".2.$notice1.0.2">有38个应用被隐藏，查看隐藏应用列表</div>
+							</div></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="wrap clearfix">
+			<div class="content no-sidebar">
+				<div class="pure-g">
+					<div class="pure-u-1 pure-u-lg-2-3">
+						<div class="page-title">
+							<h2>
+								应用程序<sub>此列表为当前1小时内的数据</sub>
+							</h2>
+						</div>
+					</div>
+				</div>
+				<div id="root">
+					<div data-reactid=".0">
+						<div class="pure-g" data-reactid=".0.0">
+							<div class="pure-u-1 pure-u-lg-2-3" data-reactid=".0.0.0">
+								<div class="box" data-reactid=".0.0.0.0">
+									<div class="widget-tab" data-reactid=".0.0.0.0.0">
+										<div class="widget-title-tab" data-reactid=".0.0.0.0.0.0">
+											<ul data-reactid=".0.0.0.0.0.0.0">
+												<li class="active" data-reactid=".0.0.0.0.0.0.0.$0"><a
+													href="javascript:;" data-reactid=".0.0.0.0.0.0.0.$0.0">应用程序</a></li>
+												<li class="" data-reactid=".0.0.0.0.0.0.0.$1"><a
+													href="javascript:;" data-reactid=".0.0.0.0.0.0.0.$1.0">文档中心</a></li>
+											</ul>
+										</div>
+										<div class="widget-content">
+											<div>
+												<div class="widget-normal"
+													>
+													<div class="widget-content" style="display: block;">
+														<div>
+															<table class="table table-striped table-layout">
+																<colgroup>
+																	<col style="width: 30px;">
+																	<col style="width: 30px;">
+																	<col style="width: auto;">
+																	<col style="width: 15%;">
+																	<col style="width: 15%;">
+																	<col style="width: 15%;">
+																	<col style="width: 10%;">
+																</colgroup>
+																<thead>
+																	<tr>
+																		<th style="width: 30px;" class=""></th>
+																		<th class="sortedth"><span class="sortedtext"></span>
+																		<span class="sorted-arrow "></span></th>
+																		<th class="sortedth"><span
+																			class="sortedtext">应用程序</span><span
+																			class="sorted-arrow "></span></th>
+																			<th class="sortedth"><span
+																			class="sortedtext">响应时间</span><span
+																			class="sorted-arrow "></span></th>
+																			<th class="sortedth"><span
+																			class="sortedtext">吞吐量(cpm)</span><span
+																			class="sorted-arrow "></span></th>
+																			<th class="sortedth"><span
+																			class="sortedtext">错误率</span><span
+																			class="sorted-arrow "></span></th>
+																		
+																	</tr>
+																</thead>
+																<tbody>
+																	<tr>
+																		<td class=""><a
+																			href="javascript:;" class="iconfont expand"></a></td>
+																		<td class=""><i
+																			class="iconfont  state-satisfied"
+																			style="margin-right: 10px;"></i></td>
+																		<td class=""><div>
+																				<a
+																					href="https://ai.oneapm.com/tpm/account/723/applications/2269311/overview"
+																					data-tip="dotnet应用，运行在（1）个实例上" data-place="top">dotnetapp</a>
+																			</div></td>
+																		<td class=""><div>275.48
+																				ms</div></td>
+																		<td class=""><div>50.13</div></td>
+																		<td class=""><div>
+																				<a
+																					href="https://ai.oneapm.com/tpm/account/723/applications/2269311/errorinfo">0.00%</a>
+																			</div></td>
+																		<td class=""><div
+																				class="operation">
+																				<a class="iconfont" href="javascript:;"></a>
+																			</div></td>
+																	</tr>
+																	<tr>
+																		<td class=""><a
+																			href="javascript:;" class="iconfont expand"></a></td>
+																		<td class=""><i
+																			class="iconfont  state-satisfied"
+																			style="margin-right: 10px;"></i></td>
+																		<td class=""><div>
+																				<a
+																					href="https://ai.oneapm.com/tpm/account/723/applications/2269311/overview"
+																					data-tip="dotnet应用，运行在（1）个实例上" data-place="top">dotnetapp</a>
+																			</div></td>
+																		<td class=""><div>275.48
+																				ms</div></td>
+																		<td class=""><div>50.13</div></td>
+																		<td class=""><div>
+																				<a
+																					href="https://ai.oneapm.com/tpm/account/723/applications/2269311/errorinfo">0.00%</a>
+																			</div></td>
+																		<td class=""><div
+																				class="operation">
+																				<a class="iconfont" href="javascript:;"></a>
+																			</div></td>
+																	</tr><tr>
+																		<td class=""><a
+																			href="javascript:;" class="iconfont expand"></a></td>
+																		<td class=""><i
+																			class="iconfont  state-satisfied"
+																			style="margin-right: 10px;"></i></td>
+																		<td class=""><div>
+																				<a
+																					href="https://ai.oneapm.com/tpm/account/723/applications/2269311/overview"
+																					data-tip="dotnet应用，运行在（1）个实例上" data-place="top">dotnetapp</a>
+																			</div></td>
+																		<td class=""><div>275.48
+																				ms</div></td>
+																		<td class=""><div>50.13</div></td>
+																		<td class=""><div>
+																				<a
+																					href="https://ai.oneapm.com/tpm/account/723/applications/2269311/errorinfo">0.00%</a>
+																			</div></td>
+																		<td class=""><div
+																				class="operation">
+																				<a class="iconfont" href="javascript:;"></a>
+																			</div></td>
+																	</tr>
+																</tbody>
+															</table>
+														</div>
+													</div>
+												</div>
+												<div class="text-align-right" style="margin-bottom: 10px;"
+													data-reactid=".0.0.0.0.0.1.$applist.1">
+													<button class="btn-blue" type="button"
+														data-tip="将隐藏一小时内无数据上传的应用" data-place="top"
+														data-reactid=".0.0.0.0.0.1.$applist.1.0">显示隐藏的应用</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="pure-u-1 pure-u-lg-1-3" data-reactid=".0.0.1">
+								<div class="box" data-reactid=".0.0.1.0">
+									<div class="widget-tab" data-reactid=".0.0.1.0.0">
+										<div class="widget-title-tab" data-reactid=".0.0.1.0.0.0">
+											<ul data-reactid=".0.0.1.0.0.0.0">
+												<li data-tip="通知" class="active"><a
+													href="javascript:;"><i class="iconfont icon-tongzhi"></i></a></li>
+												<li data-tip="宕机" class=""><a href="javascript:;" ><i
+														class="iconfont icon-dangji"></i></a></li>
+												<li data-tip="严重问题" class=""><a
+													href="javascript:;"><i
+														class="iconfont icon-baojing"></i></a></li>
+												<li data-tip="告警问题" class=""><a
+													href="javascript:;"><i
+														class="iconfont icon-wenti"></i></a></li>
+												<li data-tip="全部" class=""><a
+													href="javascript:;"><i
+														class="iconfont icon-all"></i></a></li>
+											</ul>
+										</div>
+										<div class="widget-content">
+											<div >
+												<div class="default-nodata"
+													style="height: 200px; line-height: 200px;">当前时间段无告警事件发生</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						#parse("new/common/real-foot.vm")
+					</div>
+				</div>
+			</div>
+		</div>
+		#parse("new/common/foot.vm")
+	</div>
+	</div>
+	</div>
+</body>
+</html>

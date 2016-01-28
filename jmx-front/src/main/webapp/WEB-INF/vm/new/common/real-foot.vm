@@ -1,0 +1,24 @@
+<div class="real-time">
+    <span>
+        <div class="data">
+            <a href="#">
+                <span class="btn-green">登录</span>
+            </a>
+        </div>
+        <div class="data">
+            <a href="#">
+                <span class="btn-red">注册</span>
+            </a>
+        </div>
+    </span>
+    <div class="data">
+        <a href="#" target="_blank">
+            <span class="btn-back">帮助</span>
+        </a>
+    </div>
+    <div class="data">
+        <a href="#" target="_blank">
+            <span class="btn-back">社区</span>
+        </a>
+    </div>
+</div>

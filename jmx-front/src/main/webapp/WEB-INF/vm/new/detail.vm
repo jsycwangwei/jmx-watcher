@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>JMX监控</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="description" content="">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1.5">
+<!-- 国产双核浏览器用 start -->
+<meta name="renderer" content="webkit">
+<!-- 国产双核浏览器用 end -->
+<link rel="stylesheet" type="text/css" href="resources/css/new/style-c28ecc68.css">
+</head>
+<body>
+	<div id="layout">
+		<div class="header">
+			<div class="logo">
+				<a href="#" title="JMX监控">
+					<img src="resources/image/logo.png"/>
+					<span>JMX监控</span>
+				</a>
+			</div>
+			<div class="account">
+				<strong class="account-info"> <i class="iconfont large"></i>
+					<span> JMX监控</span> <i class="iconfont icon-arrowup"></i>
+				</strong>
+				<div class="dropdown-main" style="display: none;">
+					<ul>
+						<li><a href="https://user.oneapm.com/account/profile.do"
+							target="_blank"><i class="iconfont"></i> 个人中心</a></li>
+						<li><a href="https://user.oneapm.com/account/home.do"
+							target="_blank"><i class="iconfont"></i> 控制台</a></li>
+						<li><a href="https://user.oneapm.com/account/group.do"><i
+								class="iconfont"></i> 团队信息</a></li>
+						<li><a href="javascript:;"><i class="iconfont"></i> 切换团队</a>
+							<ul>
+								<li><a
+									href="https://user.oneapm.com/account/groupChange.do?groupId=723">OneAPM</a>
+								</li>
+							</ul></li>
+						<li><a href="http://club.oneapm.com/" target="_blank"><i
+								class="iconfont"></i>社区</a></li>
+						<li><a href="https://ai.oneapm.com/tpm/account/logout"><i
+								class="iconfont"></i> 退出</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="btn-sidebar">
+				<a class="iconfont" href="javascript:;"></a>
+			</div>
+			<div class="nav">
+				<div class="services"></div>
+				<div id="topswitch">
+					<div class="apps" data-reactid=".1">
+						<strong data-reactid=".1.0"><i class="iconfont  state-downtime" style="margin-right: 10px;"></i><span>Java-app-b</span>
+						<i class="iconfont icon-btn-arrow"></i></strong>
+						<div class="dropdown-main" style="display: none;"
+							data-reactid=".1.1">
+							<div class="default-loader"
+								style="height: 200px; line-height: 200px;">
+								<div class="loader">
+									<i class="iconfont"></i>
+								</div>
+								<span></span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="topswitch"></div>
+			</div>
+		</div>
+		<div class="wrap clearfix">
+
+			#parse("new/common/sider.vm")
+
+			<div class="content" id="root">
+				<div data-reactid=".0">
+					<div class="page-title">
+						<div class="navbar">
+							<ul>
+								<li><div class="dropdown">
+										<strong><span>全部实例</span><i
+											class="iconfont icon-btn-arrow"></i></strong>
+										<div class="dropdown-main" style="display: none;">
+											<div class="default-loader"
+												style="height: 200px; line-height: 200px;">
+												<div class="loader" >
+													<i class="iconfont"></i>
+												</div>
+												<span></span>
+											</div>
+										</div>
+									</div></li>
+								<li>
+									<div class="dropdown time-slider">
+										<strong><i class="iconfont icon-clock"></i>
+												   <span> 最新30分钟</span>
+											    <i class="iconfont icon-btn-arrow"></i>
+										</strong>
+									</div></li>
+							</ul>
+						</div>
+						<h2 >
+							<span >JVM</span><sub>展现 JVM 性能</sub>
+						</h2>
+					</div>
+					<div class="pure-g">
+						<div class="pure-u-1">
+							<div class="box comp-box" >
+								<div class="widget-tab">
+									<div class="widget-title-tab">
+										<ul >
+											<li class="active"><a href="javascript:;">内存</a></li>
+											<li class=""><a href="javascript:;">线程</a></li>
+											<li class=""><a href="javascript:;">会话</a></li>
+										</ul>
+									</div>
+									<div class="widget-content">
+										#parse("new/memory.vm")
+									</div>
+								</div>
+							</div>
+						</div>
+						#parse("new/common/real-foot.vm")
+					</div>
+				</div>
+			</div>
+		</div>
+		#parse("new/common/foot.vm")
+	</div>
+
+
+
+	
+</body>
+</html>
