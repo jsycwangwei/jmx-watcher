@@ -1,0 +1,62 @@
+<div>
+												<div class="widget-normal"
+													>
+													<div class="widget-content" style="display: block;">
+														<div>
+															<table class="table table-striped table-layout">
+																<colgroup>
+																	<col style="width: 30px;">
+																	<col style="width: 30px;">
+																	<col style="width: auto;">
+																	<col style="width: 15%;">
+																	<col style="width: 15%;">
+																	<col style="width: 15%;">
+																	<col style="width: 10%;">
+																</colgroup>
+																<thead>
+																	<tr>
+																		<th style="width: 30px;" class=""></th>
+																		<th class="sortedth"><span class="sortedtext"></span><span class="sorted-arrow "></span></th>
+																		<th class="sortedth"><span class="sortedtext">应用程序</span> <span class="sorted-arrow "></span></th>
+																		<th class="sortedth"><span class="sortedtext">响应时间</span><span class="sorted-arrow "></span></th>
+																		<th class="sortedth"><span class="sortedtext">吞吐量(cpm)</span><span class="sorted-arrow "></span></th>
+																		<th class="sortedth"><span class="sortedtext">错误率</span><span class="sorted-arrow "></span></th>
+																	</tr>
+																</thead>
+																<tbody>
+																	<tr>
+																		<td class=""><a href="javascript:;" class="iconfont expand"></a></td>
+																		<td class=""><i class="iconfont  state-satisfied" style="margin-right: 10px;"></i></td>
+																		<td class=""><div> <a href="#"  data-place="top">dotnetapp</a> </div></td>
+																		<td class=""><div>275.48 ms</div></td>
+																		<td class=""><div>50.13</div></td>
+																		<td class=""><div> <a href="#">0.00%</a> </div></td>
+																		<td class=""><div class="operation"> <a class="iconfont" href="javascript:;"></a> </div></td>
+																	</tr>
+																	<tr>
+																		<td class=""><a href="javascript:;" class="iconfont expand"></a></td>
+																		<td class=""><i class="iconfont  state-satisfied" style="margin-right: 10px;"></i></td>
+																		<td class=""><div> <a href="#"  data-place="top">dotnetapp</a> </div></td>
+																		<td class=""><div>275.48 ms</div></td>
+																		<td class=""><div>50.13</div></td>
+																		<td class=""><div> <a href="#">0.00%</a> </div></td>
+																		<td class=""><div class="operation"> <a class="iconfont" href="javascript:;"></a> </div></td>
+																	</tr>
+																	<tr>
+																		<td class=""><a href="javascript:;" class="iconfont expand"></a></td>
+																		<td class=""><i class="iconfont  state-satisfied" style="margin-right: 10px;"></i></td>
+																		<td class=""><div> <a href="#"  data-place="top">dotnetapp</a> </div></td>
+																		<td class=""><div>275.48 ms</div></td>
+																		<td class=""><div>50.13</div></td>
+																		<td class=""><div> <a href="#">0.00%</a> </div></td>
+																		<td class=""><div class="operation"> <a class="iconfont" href="javascript:;"></a> </div></td>
+																	</tr>
+																</tbody>
+															</table>
+														</div>
+													</div>
+												</div>
+												<div class="text-align-right" style="margin-bottom: 10px;">
+													<button class="btn-blue" type="button" data-place="top">显示隐藏的应用</button>
+												</div>
+											</div>
