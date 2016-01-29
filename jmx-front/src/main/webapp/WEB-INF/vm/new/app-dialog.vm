@@ -1,0 +1,37 @@
+<div style="">
+  <div>
+    <div class="dialog" style="margin-left: -250px; margin-top: -119.5px;">
+      <div class="dialog-header" >
+        <a class="close iconfont" href="javascript:;" >
+          
+        </a>
+        <h4 >
+          App 设置
+        </h4>
+      </div>
+      <div class="dialog-content" >
+        <div class="form-group horizontal">
+          <ul >
+            <li >
+              <label for="account-name" class="control-label">
+                App 名称
+              </label>
+              <input class="input-text" name="name" value="php application2">
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="dialog-footer">
+        <div >
+          <span>
+            <button class="btn-green" type="button">
+				重命名
+            </button>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="dialog-backdrop">
+    </div>
+  </div>
+</div>

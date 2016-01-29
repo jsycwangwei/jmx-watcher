@@ -1,1 +1,5 @@
 <div id="layout_footer"></div>
+	
+<script type="text/javascript" src="/resources/js/jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="/resources/js/underscore/underscore-min.js"></script>
+<script type="text/javascript" src="/resources/js/new/index.js"></script>

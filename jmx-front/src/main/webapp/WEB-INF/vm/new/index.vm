@@ -1,76 +1,91 @@
 <!DOCTYPE html>
-<!-- saved from url=(0052)https://ai.oneapm.com/tpm/account/723/applications#/ -->
+<!-- saved from url=(0052)https://ai.oneapm.com/tpm/account/723/applications#/
+-->
 <html class="no-js">
 <!--<![endif]-->
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>JMX监控</title>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="description" content="">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=1.5">
-<!-- 国产双核浏览器用 start -->
-<meta name="renderer" content="webkit">
-<!-- 国产双核浏览器用 end -->
-<link rel="stylesheet" type="text/css" href="resources/css/new/style-c28ecc68.css">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>
+    JMX监控
+  </title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.5">
+  <meta name="renderer" content="webkit">
+  <link rel="stylesheet" type="text/css" href="resources/css/new/style-c28ecc68.css">
 </head>
 <body>
-	<div id="layout">
-		<div class="header">
-			<div class="logo">
-				<a href="#" title="JMX监控">
-					<img src="resources/image/logo.png"/>
-					<span>JMX监控</span>
-				</a>
-			</div>
-			#parse("new/common/account.vm")
-			<div class="btn-sidebar">
-				<a class="iconfont" href="javascript:;"></a>
-			</div>
-			#parse("new/common/top/nav.vm")
-		</div>
-		<div class="wrap clearfix">
-			<div class="content no-sidebar">
-				<div class="pure-g">
-					<div class="pure-u-1 pure-u-lg-2-3">
-						<div class="page-title">
-							<h2>
-								应用程序<sub>此列表为当前1小时内的数据</sub>
-							</h2>
-						</div>
-					</div>
-				</div>
-				<div id="root">
-					<div data-reactid=".0">
-						<div class="pure-g">
-							<div class="pure-u-1 pure-u-lg-2-3">
-								<div class="box">
-									<div class="widget-tab">
-										<div class="widget-title-tab">
-											<ul>
-												<li class="active">
-													<a href="javascript:;">应用程序</a></li>
-												<li class="">
-													<a href="javascript:;">文档中心</a></li>
-											</ul>
-										</div>
-										<div class="widget-content">
-											#parse("new/common/applist.vm")
-										</div>
-									</div>
-								</div>
-							</div>
-							#parse("new/notice.vm")
-						</div>
-						#parse("new/common/real-foot.vm")
-					</div>
-				</div>
-			</div>
-		</div>
-		#parse("new/common/foot.vm")
-	</div>
-	</div>
-	</div>
+  <div id="layout">
+    <div class="header">
+      <div class="logo">
+        <a href="#" title="JMX监控">
+          <img src="resources/image/logo.png" />
+          <span>
+            JMX监控
+          </span>
+        </a>
+      </div>
+      #parse("new/common/account.vm")
+      <div class="btn-sidebar">
+        <a class="iconfont" href="javascript:;">
+          
+        </a>
+      </div>
+      #parse("new/common/top/nav.vm")
+    </div>
+    <div class="wrap clearfix">
+      <div class="content no-sidebar">
+        <div class="pure-g">
+          <div class="pure-u-1 pure-u-lg-2-3">
+            <div class="page-title">
+              <h2>
+					应用程序
+                <sub>
+					此列表为当前1小时内的数据
+                </sub>
+              </h2>
+            </div>
+          </div>
+        </div>
+        <div id="root">
+          <div data-reactid=".0">
+            <div class="pure-g">
+              <div class="pure-u-1 pure-u-lg-2-3">
+                <div class="box">
+                  <div class="widget-tab">
+                    <div class="widget-title-tab">
+                      <ul>
+                        <li class="active">
+                          <a href="javascript:;">
+								应用程序
+                          </a>
+                        </li>
+                        <li class="">
+                          <a href="javascript:;">
+								文档中心
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="widget-content">
+                      #parse("new/common/applist.vm")
+                    </div>
+                  </div>
+                </div>
+              </div>
+              #parse("new/notice.vm")
+            </div>
+            #parse("new/common/real-foot.vm")
+          </div>
+        </div>
+      </div>
+    </div>
+    #parse("new/common/foot.vm")
+  </div>
+  </div>
+  </div>
+  ##编辑弹出框 ##parse("new/app-dialog.vm")
 </body>
+
 </html>

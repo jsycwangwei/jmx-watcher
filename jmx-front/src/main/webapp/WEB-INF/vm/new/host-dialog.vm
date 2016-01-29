@@ -1,0 +1,28 @@
+<div>
+		<div data-reactid=".4">
+			<div class="dialog" data-reactid=".4.0" style="margin-left: -250px; margin-top: -119.5px;">
+				<div class="dialog-header" data-reactid=".4.0.0">
+					<a class="close iconfont" href="javascript:;" data-reactid=".4.0.0.0"></a>
+					<h4 data-reactid=".4.0.0.1">App 设置</h4>
+				</div>
+				<div class="dialog-content" data-reactid=".4.0.1">
+					<div class="form-group horizontal" data-reactid=".4.0.1.0">
+						<ul data-reactid=".4.0.1.0.0">
+							<li data-reactid=".4.0.1.0.0.0">
+								<label for="account-name" class="control-label" data-reactid=".4.0.1.0.0.0.0">App 名称</label>
+								<input class="input-text" name="name" value="php application2" data-reactid=".4.0.1.0.0.0.1">
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="dialog-footer" data-reactid=".4.0.2">
+					<div data-reactid=".4.0.2.0">
+						<span data-reactid=".4.0.2.0.0">
+							<button class="btn-green" type="button" data-reactid=".4.0.2.0.0.0">重命名</button>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="dialog-backdrop" data-reactid=".4.1"></div>
+		</div>
+	</div>
