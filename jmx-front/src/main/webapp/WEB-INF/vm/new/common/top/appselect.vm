@@ -1,0 +1,22 @@
+	      <div class="nav">
+				<div class="services"></div>
+				<div id="topswitch">
+					<div class="apps" data-reactid=".1">
+						<strong>
+							<i class="iconfont  state-downtime" style="margin-right: 10px;"></i>
+							<span>Java-app-b</span>
+							<i class="iconfont icon-btn-arrow"></i>
+						</strong>
+						<div class="dropdown-main" style="display: none;">
+							<div class="default-loader"
+								style="height: 200px; line-height: 200px;">
+								<div class="loader">
+									<i class="iconfont"></i>
+								</div>
+								<span></span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="topswitch"></div>
+			</div>

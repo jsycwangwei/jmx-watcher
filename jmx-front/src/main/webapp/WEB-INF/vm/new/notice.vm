@@ -1,0 +1,29 @@
+<div class="pure-u-1 pure-u-lg-1-3">
+								<div class="box" >
+									<div class="widget-tab">
+										<div class="widget-title-tab">
+											<ul>
+												<li data-tip="通知" class="active"><a
+													href="javascript:;"><i class="iconfont icon-tongzhi"></i></a></li>
+												<li data-tip="宕机" class=""><a href="javascript:;" ><i
+														class="iconfont icon-dangji"></i></a></li>
+												<li data-tip="严重问题" class=""><a
+													href="javascript:;"><i
+														class="iconfont icon-baojing"></i></a></li>
+												<li data-tip="告警问题" class=""><a
+													href="javascript:;"><i
+														class="iconfont icon-wenti"></i></a></li>
+												<li data-tip="全部" class=""><a
+													href="javascript:;"><i
+														class="iconfont icon-all"></i></a></li>
+											</ul>
+										</div>
+										<div class="widget-content">
+											<div >
+												<div class="default-nodata"
+													style="height: 200px; line-height: 200px;">当前时间段无告警事件发生</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>

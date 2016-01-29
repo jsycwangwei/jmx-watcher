@@ -1,0 +1,25 @@
+<div class="account">
+				<strong class="account-info"> <i class="iconfont large"></i>
+					<span> JMX监控</span> <i class="iconfont icon-arrowup"></i>
+				</strong>
+				<div class="dropdown-main" style="display: none;">
+					<ul>
+						<li><a href="https://user.oneapm.com/account/profile.do"
+							target="_blank"><i class="iconfont"></i> 个人中心</a></li>
+						<li><a href="https://user.oneapm.com/account/home.do"
+							target="_blank"><i class="iconfont"></i> 控制台</a></li>
+						<li><a href="https://user.oneapm.com/account/group.do"><i
+								class="iconfont"></i> 团队信息</a></li>
+						<li><a href="javascript:;"><i class="iconfont"></i> 切换团队</a>
+							<ul>
+								<li><a
+									href="https://user.oneapm.com/account/groupChange.do?groupId=723">OneAPM</a>
+								</li>
+							</ul></li>
+						<li><a href="http://club.oneapm.com/" target="_blank"><i
+								class="iconfont"></i>社区</a></li>
+						<li><a href="https://ai.oneapm.com/tpm/account/logout"><i
+								class="iconfont"></i> 退出</a></li>
+					</ul>
+				</div>
+			</div>

@@ -22,54 +22,11 @@
 					<span>JMX监控</span>
 				</a>
 			</div>
-			<div class="account">
-				<strong class="account-info"> <i class="iconfont large"></i>
-					<span> JMX监控</span> <i class="iconfont icon-arrowup"></i>
-				</strong>
-				<div class="dropdown-main" style="display: none;">
-					<ul>
-						<li><a href="https://user.oneapm.com/account/profile.do"
-							target="_blank"><i class="iconfont"></i> 个人中心</a></li>
-						<li><a href="https://user.oneapm.com/account/home.do"
-							target="_blank"><i class="iconfont"></i> 控制台</a></li>
-						<li><a href="https://user.oneapm.com/account/group.do"><i
-								class="iconfont"></i> 团队信息</a></li>
-						<li><a href="javascript:;"><i class="iconfont"></i> 切换团队</a>
-							<ul>
-								<li><a
-									href="https://user.oneapm.com/account/groupChange.do?groupId=723">OneAPM</a>
-								</li>
-							</ul></li>
-						<li><a href="http://club.oneapm.com/" target="_blank"><i
-								class="iconfont"></i>社区</a></li>
-						<li><a href="https://ai.oneapm.com/tpm/account/logout"><i
-								class="iconfont"></i> 退出</a></li>
-					</ul>
-				</div>
-			</div>
+			#parse("new/common/account.vm")
 			<div class="btn-sidebar">
 				<a class="iconfont" href="javascript:;"></a>
 			</div>
-			<div class="nav">
-				<div class="services"></div>
-				<div id="topswitch">
-					<div class="apps" data-reactid=".1">
-						<strong data-reactid=".1.0"><i class="iconfont  state-downtime" style="margin-right: 10px;"></i><span>Java-app-b</span>
-						<i class="iconfont icon-btn-arrow"></i></strong>
-						<div class="dropdown-main" style="display: none;"
-							data-reactid=".1.1">
-							<div class="default-loader"
-								style="height: 200px; line-height: 200px;">
-								<div class="loader">
-									<i class="iconfont"></i>
-								</div>
-								<span></span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div id="topswitch"></div>
-			</div>
+			#parse("new/common/top/appselect.vm")
 		</div>
 		<div class="wrap clearfix">
 

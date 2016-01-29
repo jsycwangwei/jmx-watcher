@@ -1,0 +1,45 @@
+<div class="nav">
+				<div class="services">
+					<ul>
+						<li><a class="active"
+							href="#"
+							data-tip="应用性能管理" data-place="bottom"> <i class="iconfont"></i>
+						</a></li>
+						<li><a class=""
+							href="#"
+							data-tip="真实用户体验监控" data-place="bottom"> <i class="iconfont"></i>
+						</a></li>
+						<li><a class="" href="#"
+							data-tip="系统监控和中间件监控" data-place="bottom"> <i
+								class="iconfont"></i>
+						</a></li>
+						<li><a class=""
+							href="#" data-tip="模拟业务监控"
+							data-place="bottom"> <i class="iconfont"></i>
+						</a></li>
+						<li><a class="" href="#"
+							data-tip="移动应用性能管理平台" data-place="bottom"> <i
+								class="iconfont"></i>
+						</a></li>
+						<li><a class=""
+							href="#"
+							data-tip="一站式告警管理平台" data-place="bottom"> <i class="iconfont"></i>
+						</a></li>
+						<li><a class=""
+							href="#"
+							data-tip="主机监控" data-place="bottom"> <i class="iconfont"></i>
+						</a></li>
+					</ul>
+				</div>
+				<div class="notice-tips">
+					<ul data-reactid=".2">
+						<li style="display: none;">
+							<div class="notice">
+								<a class="iconfont close" href="javascript:;"></a>
+								<i class="iconfont icon-info"></i>
+								<div class="notice-inner">有38个应用被隐藏，查看隐藏应用列表</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>

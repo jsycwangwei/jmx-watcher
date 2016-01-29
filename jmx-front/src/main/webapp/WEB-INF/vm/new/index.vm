@@ -24,84 +24,11 @@
 					<span>JMX监控</span>
 				</a>
 			</div>
-			<div class="account">
-				<strong class="account-info"> <i class="iconfont large"></i>
-					<span> JMX监控</span> <i class="iconfont icon-arrowup"></i>
-				</strong>
-				<div class="dropdown-main" style="display: none;">
-					<ul>
-						<li><a href="#" target="_blank"><i class="iconfont"></i> 个人中心</a></li>
-						<li><a href="#" target="_blank"><i class="iconfont"></i> 控制台</a></li>
-						<li><a href="#"><i class="iconfont"></i> 团队信息</a></li>
-						<li>
-							<a href="javascript:;"><i class="iconfont"></i> 切换团队</a>
-							<ul>
-								<li><a href="#">JMX</a></li>
-							</ul>
-						</li>
-						<li><a href="#" target="_blank"><i class="iconfont"></i>社区</a></li>
-						<li><a href="#"><i class="iconfont"></i> 退出</a></li>
-					</ul>
-				</div>
-			</div>
-			<div class="order">
-				<strong class="order-title"><i class="iconfont"></i><span>
-						工单</span><i class="iconfont icon-arrowup"></i></strong>
-				<div class="dropdown-main" style="display: none;">
-					<ul>
-						<li><a href="#" target="_blank"><i class="iconfont"></i>新建工单</a></li>
-						<li><a href="#" target="_blank"><i class="iconfont"></i>工单记录</a></li>
-					</ul>
-				</div>
-			</div>
+			#parse("new/common/account.vm")
 			<div class="btn-sidebar">
 				<a class="iconfont" href="javascript:;"></a>
 			</div>
-			<div class="nav">
-				<div class="services">
-					<ul>
-						<li><a class="active"
-							href="#"
-							data-tip="应用性能管理" data-place="bottom"> <i class="iconfont"></i>
-						</a></li>
-						<li><a class=""
-							href="#"
-							data-tip="真实用户体验监控" data-place="bottom"> <i class="iconfont"></i>
-						</a></li>
-						<li><a class="" href="#"
-							data-tip="系统监控和中间件监控" data-place="bottom"> <i
-								class="iconfont"></i>
-						</a></li>
-						<li><a class=""
-							href="#" data-tip="模拟业务监控"
-							data-place="bottom"> <i class="iconfont"></i>
-						</a></li>
-						<li><a class="" href="#"
-							data-tip="移动应用性能管理平台" data-place="bottom"> <i
-								class="iconfont"></i>
-						</a></li>
-						<li><a class=""
-							href="#"
-							data-tip="一站式告警管理平台" data-place="bottom"> <i class="iconfont"></i>
-						</a></li>
-						<li><a class=""
-							href="#"
-							data-tip="主机监控" data-place="bottom"> <i class="iconfont"></i>
-						</a></li>
-					</ul>
-				</div>
-				<div class="notice-tips">
-					<ul data-reactid=".2">
-						<li style="display: none;">
-							<div class="notice">
-								<a class="iconfont close" href="javascript:;"></a>
-								<i class="iconfont icon-info"></i>
-								<div class="notice-inner">有38个应用被隐藏，查看隐藏应用列表</div>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</div>
+			#parse("new/common/top/nav.vm")
 		</div>
 		<div class="wrap clearfix">
 			<div class="content no-sidebar">
@@ -134,35 +61,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="pure-u-1 pure-u-lg-1-3">
-								<div class="box" >
-									<div class="widget-tab">
-										<div class="widget-title-tab">
-											<ul>
-												<li data-tip="通知" class="active"><a
-													href="javascript:;"><i class="iconfont icon-tongzhi"></i></a></li>
-												<li data-tip="宕机" class=""><a href="javascript:;" ><i
-														class="iconfont icon-dangji"></i></a></li>
-												<li data-tip="严重问题" class=""><a
-													href="javascript:;"><i
-														class="iconfont icon-baojing"></i></a></li>
-												<li data-tip="告警问题" class=""><a
-													href="javascript:;"><i
-														class="iconfont icon-wenti"></i></a></li>
-												<li data-tip="全部" class=""><a
-													href="javascript:;"><i
-														class="iconfont icon-all"></i></a></li>
-											</ul>
-										</div>
-										<div class="widget-content">
-											<div >
-												<div class="default-nodata"
-													style="height: 200px; line-height: 200px;">当前时间段无告警事件发生</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
+							#parse("new/notice.vm")
 						</div>
 						#parse("new/common/real-foot.vm")
 					</div>
